@@ -54,3 +54,4 @@ add the plasmoid to the desktop or to a panel, then right click on it and select
 ## TODO
 
 * I dunno if something comes to my mind I'll write it here
+* set custom dimension
