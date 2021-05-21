@@ -1,20 +1,20 @@
 [Desktop Entry]
-Name=button
-Name[en_GB]=button
-Comment=Configurable button to launch scripts and monitor statuses
-Comment[en_GB]=Configurable button to launch scripts and monitor statuses
+Name=Scriptinator
+Name[en_GB]=Scriptinator
+Comment=fico lancia script
+Comment[en_GB]=fico lancia script 2
 
-Icon=/home/tubbadu/Immagini/Wallpapers/logo_poli_blu.png
+Icon=/home/tubbadu/.local/share/plasma/plasmoids/com.github.scriptinator/contents/img/scriptinator_border.png
 Type=Service
 X-KDE-ServiceTypes=Plasma/Applet
 
 X-Plasma-API=declarativeappletscript
 X-Plasma-MainScript=ui/main.qml
 
-X-KDE-PluginInfo-Author=Piotr Markiewicz
-X-KDE-PluginInfo-Email=p.marki@wp.pl
-X-KDE-PluginInfo-Name=button
-X-KDE-PluginInfo-Version=0.2.0
-X-KDE-PluginInfo-Website=https://github.com/pmarki/plasmoid-button
+X-KDE-PluginInfo-Author=tubbadu
+X-KDE-PluginInfo-Email=tubbadu@gmail.com
+X-KDE-PluginInfo-Name=com.github.scriptinator
+X-KDE-PluginInfo-Version=0.1.0
+X-KDE-PluginInfo-Website=https://github.com/tubbadu/Scriptinator
 X-KDE-PluginInfo-Category=Utilities
 X-KDE-PluginInfo-License=GPL
