@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+		http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+	<kcfgfile name=""/>
+	<group name="General">
+	<entry name="initScript" type="String">
+		<label>Init script</label>
+		<default>echo ''</default>
+	</entry>
+	<entry name="onClickScript" type="String">
+		<label>OnClick script</label>
+		<default>echo ''</default>
+	</entry>
+	<entry name="wheelUpScript" type="String">
+		<label>WheelUp script</label>
+		<default>echo ''</default>
+	</entry>
+	<entry name="wheelDownScript" type="String">
+		<label>WheelDown script</label>
+		<default>echo ''</default>
+	</entry>
+	<entry name="showBackground" type="Bool">
+		<label>show background</label>
+		<default>true</default>
+	</entry>
+	<entry name="showTooltip" type="Bool">
+		<label>show tooltip</label>
+		<default>true</default>
+	</entry>
+	<entry name="customTooltipCheck" type="Bool">
+		<label>show tooltip</label>
+		<default>false</default>
+	</entry>
+	<entry name="customTooltip" type="String">
+		<label>WheelDown script</label>
+		<default></default>
+	</entry>
+	</group>
+</kcfg>
