@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=Scriptinator
 Name[en_GB]=Scriptinator
-Comment=fico lancia script
-Comment[en_GB]=fico lancia script 2
+Comment=Behold! the Scriptinator!\nlaunch custom script and bash commands with a simple mouse gesture
+Comment[en_GB]=Behold! the Scriptinator!\nlaunch custom script and bash commands with a simple mouse gesture
 
 Icon=/home/tubbadu/.local/share/plasma/plasmoids/com.github.scriptinator/contents/img/scriptinator_border.png
 Type=Service
