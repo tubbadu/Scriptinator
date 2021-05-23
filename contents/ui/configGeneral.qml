@@ -12,6 +12,8 @@ Kirigami.FormLayout {
 	property alias cfg_wheelDownScript: wheelDownScript.text
 	property alias cfg_showBackground: showBackground.checked
 	property alias cfg_showTooltip: showTooltip.checked
+	property alias cfg_setHeight: setHeight.value
+	property alias cfg_setWidth: setWidth.value
 
 	property alias cfg_customTooltip: customTooltip.text
 	property alias cfg_customTooltipCheck: customTooltipCheck.checked
@@ -52,4 +54,31 @@ Kirigami.FormLayout {
 		id: customTooltip
 		Kirigami.FormData.label: i18n("Custom tooltip")
 	}
-} 
+	Label{
+		text: i18n("choose custom height and width. If set to 0, it will be automatic")
+	}
+	RowLayout {
+		id: setSize
+		spacing: 6
+		Label{
+			text: i18n("Height")
+		}
+		SpinBox {
+			id: setHeight
+			//value: 0
+			//Kirigami.FormData.label: i18n("Height")
+		}
+		Label{
+			text: i18n("Width")
+		}
+		SpinBox {
+			id: setWidth
+			//value: 0
+			//Kirigami.FormData.label: i18n("Width")
+		}
+	//	TextField {
+	//		id: prova
+	//		text: i18n("provaaa")
+	//	}
+	}
+}

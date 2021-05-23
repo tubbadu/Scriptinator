@@ -1,10 +1,12 @@
+import QtQuick.Layouts 1.0
 import QtQuick 2.0
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 Item{
-	Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
 		id: root
+
+		Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
 		property string initScript: Plasmoid.configuration.initScript
 		property string onClickScript: Plasmoid.configuration.onClickScript
 		property string wheelUpScript: Plasmoid.configuration.wheelUpScript
@@ -13,6 +15,8 @@ Item{
 		property bool showTooltip: Plasmoid.configuration.showTooltip
 		property string customTooltip: Plasmoid.configuration.customTooltip
 		property bool customTooltipCheck: Plasmoid.configuration.customTooltipCheck
+		property int setHeight: Plasmoid.configuration.setHeight
+		property int setWidth: Plasmoid.configuration.setWidth
 		
 		property string iconPath: ""
 		property string outputText: ""
@@ -103,4 +107,11 @@ Item{
 		}
 		
 		Plasmoid.backgroundHints: showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
+		
+		Layout.maximumHeight: setHeight == 0 ? parent.Height : setHeight
+		Layout.minimumHeight: setHeight == 0 ? parent.Height : setHeight
+		
+		Layout.maximumWidth: setWidth == 0 ? parent.Width : setWidth
+		Layout.minimumWidth: setWidth == 0 ? parent.Width : setWidth
+
 }
