@@ -4,19 +4,12 @@
 
 ## install
 
-just copy these files into the `~/.local/share/plasma/plasmoids/` folder, than edit the `metadata.desktop` file changing the user folder:
+to install just navigate to the downloaded Scriptinator folder and run
 
 ```bash
-Icon=/home/USER/.local/share/plasma/plasmoids/com.github.scriptinator/contents/img/scriptinator_border.png
+chmod +x install.sh
+./install.sh
 ```
-
- than refresh the plasma shell with
-
-```bash
-plasmashell --replace
-```
-
-or just reboot or whatever you like.
 
 ## usage
 
@@ -54,4 +47,4 @@ add the plasmoid to the desktop or to a panel, then right click on it and select
 ## TODO
 
 * I dunno if something comes to my mind I'll write it here
-* 
+* add the possibility to use in the tooltip bash variable such as the username, the hour, ecc
