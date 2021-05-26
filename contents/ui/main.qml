@@ -31,7 +31,6 @@ Item{
 			root.onClickScript = plasmoid.readConfig("onClickScript");
 			root.wheelUpScript = plasmoid.readConfig("wheelUpScript");
 			root.wheelDownScript = plasmoid.readConfig("wheelDownScript");
-			//executable.exec(initScript)
 		}
 
 		PlasmaCore.DataSource {
@@ -93,6 +92,11 @@ Item{
 				}
 				wheel.accepted = true
 			}
+			
+			// ADD HERE THE POSSIBILITY TO CHANGE THE TOOLTIP EVERYTIME MOUSE IS OVER
+			//onEntered: { // on mouse over
+			//	executable.exec("konsole");
+			//}
 		}
 
 		PlasmaCore.IconItem {
