@@ -21,6 +21,10 @@
 		<label>WheelDown script</label>
 		<default>echo ''</default>
 	</entry>
+	<entry name="onMouseOverScript" type="String">
+		<label>WheelDown script</label>
+		<default></default>
+	</entry>
 	<entry name="showBackground" type="Bool">
 		<label>show background</label>
 		<default>true</default>

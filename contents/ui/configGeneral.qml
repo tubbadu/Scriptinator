@@ -10,6 +10,7 @@ Kirigami.FormLayout {
 	property alias cfg_onClickScript: onClickScript.text
 	property alias cfg_wheelUpScript: wheelUpScript.text
 	property alias cfg_wheelDownScript: wheelDownScript.text
+	property alias cfg_onMouseOverScript: onMouseOverScript.text
 	property alias cfg_showBackground: showBackground.checked
 	property alias cfg_showTooltip: showTooltip.checked
 	property alias cfg_setHeight: setHeight.value
@@ -37,6 +38,10 @@ Kirigami.FormLayout {
 	TextField {
 		id: wheelDownScript
 		Kirigami.FormData.label: i18n("WheelDown script:")
+	}
+	TextField {
+		id: onMouseOverScript
+		Kirigami.FormData.label: i18n("OnMouseOver script:")
 	}
 	CheckBox {
 		id: showBackground

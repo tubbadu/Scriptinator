@@ -41,10 +41,15 @@ add the plasmoid to the desktop or to a panel, then right click on it and select
 + **Use custom tooltip:**
   
   + check this if you want a custom tooltip (written in the textbox below the checkbox). NOTE! it must be checked the *show tooltip* in order to display it.
+* **OnMouseOver**: *(experimental!)*
+  
+  * launches this command whenever the cursor comes over the widget. NOTE! It only works if the Show Tooltip option is DISABLED! 
 
 ---
 
 ## TODO
 
 * I dunno if something comes to my mind I'll write it here
-* add the possibility to use in the tooltip bash variable such as the username, the hour, ecc
+* add the possibility to use in the tooltip bash variable such as the username, the hour, ecc (PlasmoidTooltipStart ecc)
+* onMouseOver works only if tooltip is disabled. fix.
+* set initIcon and initTooltip more easily with two dedicated fields in config

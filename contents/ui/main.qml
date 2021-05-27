@@ -11,6 +11,7 @@ Item{
 		property string onClickScript: Plasmoid.configuration.onClickScript
 		property string wheelUpScript: Plasmoid.configuration.wheelUpScript
 		property string wheelDownScript: Plasmoid.configuration.wheelDownScript
+		property string onMouseOverScript: Plasmoid.configuration.onMouseOverScript
 		property bool showBackground: Plasmoid.configuration.showBackground
 		property bool showTooltip: Plasmoid.configuration.showTooltip
 		property string customTooltip: Plasmoid.configuration.customTooltip
@@ -19,10 +20,11 @@ Item{
 		property int setWidth: Plasmoid.configuration.setWidth
 		
 		property string iconPath: ""
+		property string dynamicTooltip: ""
 		property string outputText: ""
 
 		Component.onCompleted: {
-			executable.exec(initScript);
+			onStartup();
 			plasmoid.addEventListener('ConfigChanged', configChanged);
 		}
 
@@ -31,6 +33,11 @@ Item{
 			root.onClickScript = plasmoid.readConfig("onClickScript");
 			root.wheelUpScript = plasmoid.readConfig("wheelUpScript");
 			root.wheelDownScript = plasmoid.readConfig("wheelDownScript");
+		}
+		
+		function onStartup(){
+			executable.exec(initScript);
+			dynamicTooltip = customTooltip;
 		}
 
 		PlasmaCore.DataSource {
@@ -59,6 +66,9 @@ Item{
 				outputText = stdout.replace('\n', '');
 				if(outputText.includes("{PlasmoidIconStart}") && outputText.includes("{PlasmoidIconEnd}")) {
 					iconPath = outputText.substring(outputText.search("{PlasmoidIconStart}") + 19, outputText.search("{PlasmoidIconEnd}"));
+				}
+				if(outputText.includes("{PlasmoidTooltipStart}") && outputText.includes("{PlasmoidTooltipEnd}")) {
+					dynamicTooltip = outputText.substring(outputText.search("{PlasmoidTooltipStart}") + 22, outputText.search("{PlasmoidTooltipEnd}"));
 				}
 			}
 		}
@@ -94,9 +104,9 @@ Item{
 			}
 			
 			// ADD HERE THE POSSIBILITY TO CHANGE THE TOOLTIP EVERYTIME MOUSE IS OVER
-			//onEntered: { // on mouse over
-			//	executable.exec("konsole");
-			//}
+			onEntered: { // on mouse over
+				executable.exec(onMouseOverScript);
+			}
 		}
 
 		PlasmaCore.IconItem {
@@ -106,7 +116,7 @@ Item{
 
 		PlasmaCore.ToolTipArea {
 			anchors.fill: parent
-			subText: customTooltipCheck? customTooltip : outputText
+			subText: customTooltipCheck? dynamicTooltip : outputText
 			enabled: showTooltip
 		}
 		
@@ -117,5 +127,4 @@ Item{
 		
 		Layout.maximumWidth: setWidth == 0 ? parent.Width : setWidth
 		Layout.minimumWidth: setWidth == 0 ? parent.Width : setWidth
-
 }
