@@ -12,6 +12,7 @@ Item{
 		property string wheelUpScript: Plasmoid.configuration.wheelUpScript
 		property string wheelDownScript: Plasmoid.configuration.wheelDownScript
 		property string onMouseOverScript: Plasmoid.configuration.onMouseOverScript
+		property string customIcon: Plasmoid.configuration.customIcon
 		property bool showBackground: Plasmoid.configuration.showBackground
 		property bool showTooltip: Plasmoid.configuration.showTooltip
 		property string customTooltip: Plasmoid.configuration.customTooltip
@@ -36,8 +37,9 @@ Item{
 		}
 		
 		function onStartup(){
-			executable.exec(initScript);
 			dynamicTooltip = customTooltip;
+			iconPath = customIcon;
+			executable.exec(initScript);
 		}
 
 		PlasmaCore.DataSource {
@@ -107,18 +109,23 @@ Item{
 			onEntered: { // on mouse over
 				executable.exec(onMouseOverScript);
 			}
+			
+			PlasmaCore.ToolTipArea { // documentation here: https://api.kde.org/frameworks-api/frameworks-apidocs/frameworks/plasma-framework/html/classToolTip.html
+				id: tooltip
+				timeout: -1
+				anchors.fill: parent
+				subText: customTooltipCheck? dynamicTooltip : outputText
+				enabled: showTooltip
+				//textFormat: RichText // doesn't work... anyone knows why????
+			}
 		}
 
 		PlasmaCore.IconItem {
 			anchors.fill: parent
-			source: iconPath//wicon? "/home/tubbadu/Immagini/Wallpapers/knotes.png": "/home/tubbadu/Immagini/Wallpapers/logo_poli_blu.png"
+			source: iconPath
 		}
 
-		PlasmaCore.ToolTipArea {
-			anchors.fill: parent
-			subText: customTooltipCheck? dynamicTooltip : outputText
-			enabled: showTooltip
-		}
+		
 		
 		Plasmoid.backgroundHints: showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
 		

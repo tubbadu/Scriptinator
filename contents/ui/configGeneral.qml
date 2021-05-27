@@ -11,6 +11,7 @@ Kirigami.FormLayout {
 	property alias cfg_wheelUpScript: wheelUpScript.text
 	property alias cfg_wheelDownScript: wheelDownScript.text
 	property alias cfg_onMouseOverScript: onMouseOverScript.text
+	property alias cfg_customIcon: customIcon.text
 	property alias cfg_showBackground: showBackground.checked
 	property alias cfg_showTooltip: showTooltip.checked
 	property alias cfg_setHeight: setHeight.value
@@ -19,9 +20,9 @@ Kirigami.FormLayout {
 	property alias cfg_customTooltip: customTooltip.text
 	property alias cfg_customTooltipCheck: customTooltipCheck.checked
 
-
-	Label {
-	text: i18n("The icon will be set everytime a command return an output containing:\n\n{PlasmoidIconStart}/home/path/to/icon.png{PlasmoidIconEnd}\n\nplease use the full path.\n")
+	TextField {
+		id: customIcon
+		Kirigami.FormData.label: i18n("Custom icon full path")
 	}
 	TextField {
 		id: initScript
@@ -53,7 +54,7 @@ Kirigami.FormLayout {
 	}
 	CheckBox {
 		id: customTooltipCheck
-		text: i18n("use custom tooltip instead of output")
+		text: i18n("use custom tooltip (if this option is disabled and the showTooltip option is enabled, the tooltip will be set to the full output of the last-run command)")
 	}
 	TextField {
 		id: customTooltip
