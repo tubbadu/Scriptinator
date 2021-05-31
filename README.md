@@ -86,3 +86,4 @@ add the plasmoid to the desktop or to a panel, then right click on it and select
 
 * I dunno if something comes to my mind I'll write it here
 * add the double tooltip
+* add the {PlasmoidTextStart} feature
