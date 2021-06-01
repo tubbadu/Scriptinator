@@ -80,6 +80,8 @@ add the plasmoid to the desktop or to a panel, then right click on it and select
   > 
   > NOTE! you may set the height to a number and the width to 0 (or vice versa) to have one fixed dimension and an automatic one
 
+NOTE! after changing preferences, if those doesn't apply immediately, just restart your session or launch `plasmashell --replace` in a terminal (or in krunner, better) 
+
 ---
 
 ## TODO

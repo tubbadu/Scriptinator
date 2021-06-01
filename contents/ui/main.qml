@@ -3,9 +3,14 @@ import QtQuick 2.0
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
-Item{
+Item {
 		id: root
-
+	
+	//	Text {
+	//		text: customTooltipCheck? dynamicTooltip : outputText
+	//		color: "white"
+	//	}
+	
 		Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
 		property string initScript: Plasmoid.configuration.initScript
 		property string onClickScript: Plasmoid.configuration.onClickScript

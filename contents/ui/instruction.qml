@@ -29,4 +29,12 @@ Kirigami.FormLayout {
 		color: "white"
 		styleColor: "black" 
 	}
+	Text {
+		text: i18n("\nNOTE! after changing preferences, if those doesn't apply immediately, just restart your session or launch `plasmashell --replace` in a terminal (or in krunner, better)")
+		textFormat: Text.MarkdownText
+		color: "white"
+		styleColor: "black" 
+	}
 }
+
+
