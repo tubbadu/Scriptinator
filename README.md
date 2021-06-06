@@ -89,3 +89,4 @@ NOTE! after changing preferences, if those doesn't apply immediately, just resta
 * I dunno if something comes to my mind I'll write it here
 * add the double tooltip
 * add the {PlasmoidTextStart} feature
+* make the assigned shortcut work
