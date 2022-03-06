@@ -8,6 +8,7 @@ Kirigami.FormLayout {
 
 	property alias cfg_initScript: initScript.text
 	property alias cfg_onClickScript: onClickScript.text
+	property alias cfg_onClickIcon: onClickIcon.text
 	property alias cfg_wheelUpScript: wheelUpScript.text
 	property alias cfg_wheelDownScript: wheelDownScript.text
 	property alias cfg_onMouseOverScript: onMouseOverScript.text
@@ -23,6 +24,10 @@ Kirigami.FormLayout {
 	TextField {
 		id: customIcon
 		Kirigami.FormData.label: i18n("Custom icon full path")
+	}
+	TextField {
+		id: onClickIcon
+		Kirigami.FormData.label: i18n("OnClick icon full path")
 	}
 	TextField {
 		id: initScript

@@ -45,6 +45,10 @@
 		<label>custom icon</label>
 		<default></default>
 	</entry>
+	<entry name="onClickIcon" type="String">
+		<label>OnClick icon</label>
+		<default></default>
+	</entry>
 	<entry name="setHeight" type="Int">
 			<default>0</default>
 	</entry>

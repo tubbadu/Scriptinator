@@ -14,6 +14,7 @@ Item {
 		Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
 		property string initScript: Plasmoid.configuration.initScript
 		property string onClickScript: Plasmoid.configuration.onClickScript
+		property string onClickIcon: Plasmoid.configuration.onClickIcon
 		property string wheelUpScript: Plasmoid.configuration.wheelUpScript
 		property string wheelDownScript: Plasmoid.configuration.wheelDownScript
 		property string onMouseOverScript: Plasmoid.configuration.onMouseOverScript
@@ -37,6 +38,7 @@ Item {
 		function configChanged(){
 			root.initScript = plasmoid.readConfig("initScript");
 			root.onClickScript = plasmoid.readConfig("onClickScript");
+			root.onClickIcon = plasmoid.readConfig("onClickIcon");
 			root.wheelUpScript = plasmoid.readConfig("wheelUpScript");
 			root.wheelDownScript = plasmoid.readConfig("wheelDownScript");
 		}
@@ -88,6 +90,7 @@ Item {
 			//cursorShape: output.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
 			
 			onClicked: {
+				parent.iconPath = onClickIcon;
 				executable.exec(onClickScript)
 			}
 
