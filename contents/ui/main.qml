@@ -37,7 +37,8 @@ Item {
 
 		function configChanged(){
 			root.initScript = plasmoid.readConfig("initScript");
-			root.onClickScript = plasmoid.readConfig("onClickScript");
+			root.
+			Script = plasmoid.readConfig("onClickScript");
 			root.onClickIcon = plasmoid.readConfig("onClickIcon");
 			root.wheelUpScript = plasmoid.readConfig("wheelUpScript");
 			root.wheelDownScript = plasmoid.readConfig("wheelDownScript");
@@ -90,7 +91,9 @@ Item {
 			//cursorShape: output.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
 			
 			onClicked: {
-				parent.iconPath = onClickIcon;
+				if(onClickIcon != ""){
+					parent.iconPath = onClickIcon;
+				}
 				executable.exec(onClickScript)
 			}
 
