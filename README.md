@@ -86,7 +86,9 @@ NOTE! after changing preferences, if those doesn't apply immediately, just resta
 
 ## TODO
 
-* I dunno if something comes to my mind I'll write it here
-* add the double tooltip
-* add the {PlasmoidTextStart} feature
-* make the assigned shortcut work
+* [ ] I dunno if something comes to my mind I'll write it here
+* [ ] add the double tooltip
+* [ ] add the {PlasmoidTextStart} feature
+* [ ] make the assigned shortcut work
+* [ ] update *init script* description (not so clear)
+* [ ] [difficult] control scriptinator externally 
