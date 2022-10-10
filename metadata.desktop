@@ -18,3 +18,5 @@ X-KDE-PluginInfo-Version=1.1
 X-KDE-PluginInfo-Website=https://github.com/tubbadu/Scriptinator
 X-KDE-PluginInfo-Category=Utilities
 X-KDE-PluginInfo-License=GPL
+X-Plasma-NotificationArea=true
+X-Plasma-NotificationAreaCategory=SystemServices
