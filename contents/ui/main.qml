@@ -17,6 +17,7 @@ Item {
 		property string onClickIcon: Plasmoid.configuration.onClickIcon
 		property string wheelUpScript: Plasmoid.configuration.wheelUpScript
 		property string wheelDownScript: Plasmoid.configuration.wheelDownScript
+		property string periodicScript: Plasmoid.configuration.periodicScript
 		property string onMouseOverScript: Plasmoid.configuration.onMouseOverScript
 		property string customIcon: Plasmoid.configuration.customIcon
 		property bool showBackground: Plasmoid.configuration.showBackground
@@ -25,6 +26,7 @@ Item {
 		property bool customTooltipCheck: Plasmoid.configuration.customTooltipCheck
 		property int setHeight: Plasmoid.configuration.setHeight
 		property int setWidth: Plasmoid.configuration.setWidth
+		property int timeout: Plasmoid.configuration.timeout
 		
 		property string iconPath: ""
 		property string dynamicTooltip: ""
@@ -32,17 +34,17 @@ Item {
 
 		Component.onCompleted: {
 			onStartup();
-			plasmoid.addEventListener('ConfigChanged', configChanged);
+			//plasmoid.addEventListener('ConfigChanged', configChanged);
 		}
 
-		function configChanged(){ //TODO FIX
+		/*function configChanged(){ //TODO FIX
 			root.initScript = plasmoid.readConfig("initScript");
 			root.
 			Script = plasmoid.readConfig("onClickScript");
 			root.onClickIcon = plasmoid.readConfig("onClickIcon");
 			root.wheelUpScript = plasmoid.readConfig("wheelUpScript");
 			root.wheelDownScript = plasmoid.readConfig("wheelDownScript");
-		}
+		}*/
 		
 		function onStartup(){
 			dynamicTooltip = customTooltip;
@@ -134,6 +136,16 @@ Item {
 		PlasmaCore.IconItem {
 			anchors.fill: parent
 			source: iconPath
+		}
+
+		Timer{
+			running: timeout != 0
+			interval: Math.trunc(timeout * 1000)
+			repeat: true
+			triggeredOnStart: true
+			onTriggered: {
+				executable.exec(periodicScript)
+			}
 		}
 
 		

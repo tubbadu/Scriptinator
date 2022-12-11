@@ -12,6 +12,8 @@ Kirigami.FormLayout {
 	property alias cfg_wheelUpScript: wheelUpScript.text
 	property alias cfg_wheelDownScript: wheelDownScript.text
 	property alias cfg_onMouseOverScript: onMouseOverScript.text
+	property alias cfg_periodicScript: periodicScript.text
+	property alias cfg_timeout: timeout.value
 	property alias cfg_customIcon: customIcon.text
 	property alias cfg_showBackground: showBackground.checked
 	property alias cfg_showTooltip: showTooltip.checked
@@ -32,6 +34,14 @@ Kirigami.FormLayout {
 	TextField {
 		id: initScript
 		Kirigami.FormData.label: i18n("Init script (to be run just once at the startup)")
+	}
+	TextField {
+		id: periodicScript
+		Kirigami.FormData.label: i18n("PeriodicScript icon full path")
+	}
+	SpinBox {
+		id: timeout
+		Kirigami.FormData.label: i18n("Timeout to run PeriodicScript (in seconds); set it to 0 to disable")
 	}
 	TextField {
 		id: onClickScript

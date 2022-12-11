@@ -55,6 +55,13 @@
 	<entry name="setWidth" type="Int">
 			<default>0</default>
 	</entry>
+	<entry name="timeout" type="Int">
+			<default>60</default>
+	</entry>
+	<entry name="periodicScript" type="String">
+		<label>Periodic script</label>
+		<default>echo ''</default>
+	</entry>
 	
 	</group>
 </kcfg>
