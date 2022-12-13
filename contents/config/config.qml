@@ -3,15 +3,13 @@ import org.kde.plasma.configuration 2.0
 
 ConfigModel {
 	ConfigCategory {
-        name: i18n("Instruction")
-        icon: "emblem-important-symbolic"
-        source: "instruction.qml"
-    }
-    
-    ConfigCategory {
         name: i18n("General")
         icon: "configure"
         source: "configGeneral.qml"
     }
-    
+	ConfigCategory {
+        name: i18n("Help")
+        icon: "help-contextual"
+        source: "help.qml"
+    }
 }
