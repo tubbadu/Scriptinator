@@ -41,13 +41,14 @@ Kirigami.FormLayout {
 	}
 	TextField {
 		id: periodicScript
-		Kirigami.FormData.label: i18n("PeriodicScript icon full path (will be run periodically)")
+		Kirigami.FormData.label: i18n("PeriodicScript script (will be run periodically)")
 		Layout.preferredWidth: parent.width
 	}
 	RowLayout{
 		SpinBox {
 			id: timeout
-			//Kirigami.FormData.label: i18n("Timeout to run PeriodicScript (in seconds); set it to 0 to disable")
+			from: 0
+			to: 100000
 		}
 		Label{
 			text: i18n("Timeout to run PeriodicScript (in seconds); set it to 0 to disable")
@@ -108,12 +109,16 @@ Kirigami.FormLayout {
 		}
 		SpinBox {
 			id: setHeight
+			from: 0
+			to: 3000
 		}
 		Label{
 			text: i18n("Width")
 		}
 		SpinBox {
 			id: setWidth
+			from: 0
+			to: 3000
 		}
 		Layout.preferredWidth: parent.width
 	}
