@@ -11,17 +11,17 @@ Kirigami.FormLayout {
 		wrapMode: Text.Wrap
 		Layout.preferredWidth: parent.width
 
-		text: i18n("The icon will be set everytime a command returns an output containing the following pattern:
+		text: i18n("The icon will be set every time a command returns an output containing the following pattern:
 
 ```{PlasmoidIconStart}/home/path/to/icon.png{PlasmoidIconEnd}```
 
 Accepted icon values are full paths (not relative paths) or icon names (`plasma`).
 
-To change the tooltip the process is the same:
+To change the tooltip, the process is the same:
 
 ```{PlasmoidTooltipStart}this is the new tooltip!{PlasmoidTooltipEnd}```
 		
-NOTE! after changing preferences, if those doesn't apply immediately, just restart your session or run `plasmashell --replace` in a terminal (or in krunner, better)")
+NOTE! After changing preferences, if they don't apply immediately, just restart your session or run `plasmashell --replace` in a terminal (or, better, in Krunner) without logging out.")
 	}
 }
 
