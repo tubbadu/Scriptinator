@@ -27,23 +27,31 @@ Kirigami.FormLayout {
 	TextField {
 		id: customIcon
 		Kirigami.FormData.label: i18n("Custom icon full path (icon set at the startup)")
-		Layout.preferredWidth: parent.width
+		Layout.fillWidth: true
 	}
 	TextField {
 		id: onClickIcon
-		Kirigami.FormData.label: i18n("OnClick icon full path (icon set when the widget is clicked, BEFORE the OnClickScript is run)")
-		Layout.preferredWidth: parent.width
+		Kirigami.FormData.label: i18n("OnClick icon full path (icon set when the widget is clicked, BEFORE the OnClick script is run)")
+		Layout.fillWidth: true
 	}
 	TextField {
 		id: initScript
 		Kirigami.FormData.label: i18n("Init script (to be run just once at the startup)")
-		Layout.preferredWidth: parent.width
+		Layout.fillWidth: true
 	}
 	TextField {
 		id: periodicScript
-		Kirigami.FormData.label: i18n("PeriodicScript script (will be run periodically)")
-		Layout.preferredWidth: parent.width
+		Kirigami.FormData.label: i18n("Periodic Script script (will be run periodically)")
+		Layout.fillWidth: true
 	}
+	/*TextField {
+		id: provaaa
+		Kirigami.FormData.label: i18n("prova script")
+		Layout.preferredWidth: 500
+		Layout.fillWidth: false
+		text: parent.width
+	}*/
+	
 	RowLayout{
 		SpinBox {
 			id: timeout
@@ -51,55 +59,55 @@ Kirigami.FormLayout {
 			to: 100000
 		}
 		Label{
-			text: i18n("Timeout to run PeriodicScript (in seconds); set it to 0 to disable")
+			text: i18n("Timeout to run Periodic Script (in seconds); set it to 0 to disable")
 			Layout.fillWidth: true
 			wrapMode: Text.Wrap
 		}
-		Layout.preferredWidth: parent.width
+		Layout.fillWidth: true
 	}
 	TextField {
 		id: onClickScript
 		Kirigami.FormData.label: i18n("OnClick script (to be run when the widget is clicked)")
-		Layout.preferredWidth: parent.width
+		Layout.fillWidth: true
 	}
 	TextField {
 		id: wheelUpScript
 		Kirigami.FormData.label: i18n("WheelUp script (to be run when scrolling up with the mouse over the widget)")
-		Layout.preferredWidth: parent.width
+		Layout.fillWidth: true
 	}
 	TextField {
 		id: wheelDownScript
 		Kirigami.FormData.label: i18n("WheelDown script (to be run when scrolling down with the mouse over the widget)")
-		Layout.preferredWidth: parent.width
+		Layout.fillWidth: true
 	}
 	TextField {
 		id: onMouseOverScript
-		Kirigami.FormData.label: i18n("OnMouseOver script (to be run when the mouse hover the widget's area)")
-		Layout.preferredWidth: parent.width
+		Kirigami.FormData.label: i18n("OnMouseOver script (to be run when the mouse hovers the widget)")
+		Layout.fillWidth: true
 	}
 	CheckBox {
 		id: showBackground
-		text: i18n("Show background (this will only affect the widget if it is placed in the desktop)")
-		Layout.preferredWidth: parent.width
+		text: i18n("Show background (this will only affect the widget if it is placed on the desktop)")
+		Layout.fillWidth: true
 	}
 	CheckBox {
 		id: showTooltip
 		text: i18n("Show tooltip")
-		Layout.preferredWidth: parent.width
+		Layout.fillWidth: true
 	}
 	CheckBox {
 		id: customTooltipCheck
-		text: i18n("use custom tooltip (if this option is disabled and the showTooltip option is enabled, the tooltip will be set to the full output of the last-run command)")
-		Layout.preferredWidth: parent.width
+		text: i18n("Use custom tooltip (if this option is disabled and the show tooltip option is enabled, the tooltip will be set to the full output of the last run command)")
+		Layout.fillWidth: true
 	}
 	TextField {
 		id: customTooltip
 		Kirigami.FormData.label: i18n("Custom tooltip")
-		Layout.preferredWidth: parent.width
+		Layout.fillWidth: true
 	}
 	Label{
 		text: i18n("Set custom height and width. If set to 0, it will be automatic (this will only affect the widget if it is placed in the desktop)")
-		Layout.preferredWidth: parent.width
+		Layout.fillWidth: true
 	}
 	RowLayout {
 		id: setSize
@@ -120,6 +128,6 @@ Kirigami.FormLayout {
 			from: 0
 			to: 3000
 		}
-		Layout.preferredWidth: parent.width
+		Layout.fillWidth: true
 	}
 }
