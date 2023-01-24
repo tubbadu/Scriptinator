@@ -4,7 +4,7 @@ Name[en_GB]=Scriptinator
 Comment=Behold! the Scriptinator!\nlaunch custom script and bash commands with a simple mouse gesture
 Comment[en_GB]=Behold! the Scriptinator!\nlaunch custom script and bash commands with a simple mouse gesture
 
-Icon=scriptnew
+Icon=scriptinator
 Type=Service
 X-KDE-ServiceTypes=Plasma/Applet
 

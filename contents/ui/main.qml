@@ -50,6 +50,22 @@ Item {
 			dynamicTooltip = customTooltip;
 			iconPath = customIcon;
 			executable.exec(initScript);
+			setStatus("passive")
+		}
+
+		function setStatus(s){
+			let getStatusCode = {
+				"active": PlasmaCore.Types.ActiveStatus,
+				"passive": PlasmaCore.Types.PassiveStatus,
+				"attention": PlasmaCore.Types.NeedsAttentionStatus,
+				"hidden": PlasmaCore.Types.Hidden
+			}
+			let newStatus = getStatusCode[s.toLowerCase()]
+			if(newStatus === undefined){
+				newStatus = getStatusCode["active"]
+			}
+
+			plasmoid.status = newStatus
 		}
 
 		PlasmaCore.DataSource {
@@ -81,6 +97,9 @@ Item {
 				}
 				if(outputText.includes("{PlasmoidTooltipStart}") && outputText.includes("{PlasmoidTooltipEnd}")) {
 					dynamicTooltip = outputText.substring(outputText.search("{PlasmoidTooltipStart}") + 22, outputText.search("{PlasmoidTooltipEnd}"));
+				}
+				if(outputText.includes("{PlasmoidStatusStart}") && outputText.includes("{PlasmoidStatusEnd}")) {
+					root.setStatus(outputText.substring(outputText.search("{PlasmoidStatusStart}") + 21, outputText.search("{PlasmoidStatusEnd}")).trim());
 				}
 			}
 		}
