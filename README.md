@@ -4,11 +4,12 @@
 
 ## install
 
-to install just navigate to the downloaded Scriptinator folder and run
+to install Scriptinator you can use the `install.sh` script:
 
 ```bash
-chmod +x install.sh
-./install.sh
+git clone https://github.com/tubbadu/Scriptinator
+cd Scriptinator
+bash ./install.sh
 ```
 
 ## usage
@@ -82,6 +83,26 @@ add the plasmoid to the desktop or to a panel, then right click on it and select
   > 
   > NOTE! you may set the height to a number and the width to 0 (or vice versa) to have one fixed dimension and an automatic one
 
+Scriptinator is also shown in the system tray, but it's disabled by default: you can right click the system tray and select *configure system tray* > *entries*, scroll down to Scriptinator and set it to *show when relevant*.
+
+You can then change its state with
+
+```
+{PlasmoidStatusStart}insert new status here{PlasmoidStatusEnd}
+```
+
+there are 4 possible values:
+
+* `active` will keep Scriptinator visible in the system tray
+
+* `passive` will keep Scriptinator hidden in the system tray popup
+
+* `attention` will draw attention to the plasmoid, showing it and making it pulse until a new status is set
+
+* `hidden` will always hide Scriptinator, even in the system tray popup
+
+
+
 NOTE! after changing preferences, if those doesn't apply immediately, just restart your session or launch `plasmashell --replace` in a terminal (or in krunner, better) 
 
 ---
@@ -94,3 +115,5 @@ NOTE! after changing preferences, if those doesn't apply immediately, just resta
 * [ ] make the assigned shortcut work
 * [x] update *init script* description (not so clear)
 * [ ] [difficult] control scriptinator externally (like dbus or somethis like this)
+- [ ] make a new UI for the help page, the current one is awful
+- [ ] add the "attention for just a few seconds" status, which will set it to attention and after a few seconds to active
