@@ -166,7 +166,7 @@ Kirigami.FormLayout {
 	}
 	CheckBox {
 		id: customTooltipCheck
-		text: i18n("Use custom tooltip (if this option is disabled and the show tooltip option is enabled, the tooltip will be set to the full output of the last run command)")
+		text: i18n("Use custom tooltip (if this option is disabled, and the show tooltip option is enabled, the tooltip will be set to the full output of the last run command)")
 		Layout.fillWidth: true
 	}
 	TextField {
@@ -175,7 +175,7 @@ Kirigami.FormLayout {
 		Layout.fillWidth: true
 	}
 	Label{
-		text: i18n("Set custom height and width. If set to 0, it will be automatic (this will only affect the widget if it is placed in the desktop)")
+		text: i18n("Set custom height and width. If set to 0, the respective dimension will be automatic (this will only affect the widget if it is placed on the desktop)")
 		Layout.fillWidth: true
 	}
 	RowLayout {
