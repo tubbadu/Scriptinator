@@ -85,6 +85,7 @@ Kirigami.FormLayout {
 			width: page.width
 		}
 		TextBox{
+			enabled: customTooltipCheck.checked
 			id: customTooltip
 			label: i18n("Custom tooltip")
 		}

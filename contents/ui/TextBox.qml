@@ -7,11 +7,11 @@ import org.kde.kirigami 2.4 as Kirigami
 Column{
 	property alias label: lbl.text
 	property alias text: txt.text
+	property alias enabled: txt.enabled
 	width: page.width
 	Kirigami.Label {
 		visible: text !== ""
 		id: lbl
-		//text: i18n("proviamo un po'")
 		wrapMode: Kirigami.Label.Wrap
 		width: parent.width
 	}
