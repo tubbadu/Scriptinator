@@ -105,6 +105,10 @@ there are 4 possible status values:
 
 NOTE! After changing preferences, if the changes don't apply immediately, just restart your session or launch `plasmashell --replace` in a terminal (or in krunner, better) 
 
+## examples
+
+ * [systemd monitor](examples/systemd-monitor/README.md)
+
 ---
 
 ## TODO
