@@ -9,10 +9,10 @@ Column{
 	property alias text: txt.text
 	property alias enabled: txt.enabled
 	width: page.width
-	Kirigami.Label {
+	Label {
 		visible: text !== ""
 		id: lbl
-		wrapMode: Kirigami.Label.Wrap
+		wrapMode: Label.Wrap
 		width: parent.width
 	}
 	TextField {

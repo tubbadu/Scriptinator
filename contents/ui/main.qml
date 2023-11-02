@@ -67,7 +67,6 @@ Item {
 				disconnectSource(sourceName) // cmd finished
 			}
 			function exec(cmd) {
-				console.warn("exec", cmd)
 				if (cmd) {
 					connectSource(setupCommand + cmd)
 				}
