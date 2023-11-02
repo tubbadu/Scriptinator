@@ -22,17 +22,20 @@ Item {
 		property string customIcon: Plasmoid.configuration.customIcon
 		property bool showBackground: Plasmoid.configuration.showBackground
 		property bool showTooltip: Plasmoid.configuration.showTooltip
-		property string customTooltip: Plasmoid.configuration.customTooltip
+		property string customTooltipTitle: Plasmoid.configuration.customTooltipTitle
+		property string customTooltipBody: Plasmoid.configuration.customTooltipBody
 		property bool customTooltipCheck: Plasmoid.configuration.customTooltipCheck
 		property int setHeight: Plasmoid.configuration.setHeight
 		property int setWidth: Plasmoid.configuration.setWidth
 		property int timeout: Plasmoid.configuration.timeout
 		
 		property string iconPath: root.customIcon
-		property string dynamicTooltip: root.customTooltip
+		property string dynamicTooltipTitle: root.customTooltipTitle
+		property string dynamicTooltipBody: root.customTooltipBody
 		property string status: "passive"
 
-		property string outputText: ""
+		property string lastOutput: ""
+		property string lastCommand: ""
 
 		Component.onCompleted: {
 			executable.exec(root.initScript);
@@ -77,51 +80,55 @@ Item {
 		Connections {
 			target: executable
 
-			function extractIcon(text) {
-				const regex = /{PlasmoidIconStart}(.*?){PlasmoidIconEnd}/g;
+			function extractFromTags(text, tag1, tag2) {
+				const regex = new RegExp(tag1 + "(.*?)" + tag2, "g");
 				const matches = text.match(regex);
+
 				if (matches) {
-					return matches.map(match => match.replace('{PlasmoidIconStart}', '').replace('{PlasmoidIconEnd}', ''));
+					return matches.map(match => match.replace(tag1, '').replace(tag2, ''));
 				}
 
 				return [];
 			}
-			function extractTooltip(text) {
-				const regex = /{PlasmoidTooltipStart}(.*?){PlasmoidTooltipEnd}/g;
-				const matches = text.match(regex);
 
-				if (matches) {
-					return matches.map(match => match.replace('{PlasmoidTooltipStart}', '').replace('{PlasmoidTooltipEnd}', ''));
+			function extractIcon(text) {
+				return extractFromTags(text, "{PlasmoidIconStart}", "{PlasmoidIconEnd}");
+			}
+			function extractTooltipTitle(text) {
+				return extractFromTags(text, "{PlasmoidTooltipTitleStart}", "{PlasmoidTooltipTitleEnd}");
+			}
+			function extractTooltipBody(text) {
+				const ret = extractFromTags(text, "{PlasmoidTooltipBodyStart}", "{PlasmoidTooltipBodyEnd}");
+				if(ret == []){
+					return extractFromTags(text, "{PlasmoidTooltipStart}", "{PlasmoidTooltipEnd}"); // leaving this for backward compatibility! I'll remove it in the next versions'
+				} else {
+					return ret;
 				}
-
-				return [];
 			}
 			function extractStatus(text) {
-				const regex = /{PlasmoidStatusStart}(.*?){PlasmoidStatusEnd}/g;
-				const matches = text.match(regex);
-
-				if (matches) {
-					return matches.map(match => match.replace('{PlasmoidStatusStart}', '').replace('{PlasmoidStatusEnd}', ''));
-				}
-
-				return [];
+				return extractFromTags(text, "{PlasmoidStatusStart}", "{PlasmoidStatusEnd}");
 			}
 			function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
 				let icon = extractIcon(stdout).slice(-1)[0];
-				let tooltip = extractTooltip(stdout).slice(-1)[0];
+				let tooltipTitle = extractTooltipTitle(stdout).slice(-1)[0];
+				let tooltipBody = extractTooltipBody(stdout).slice(-1)[0];
 				let status = extractStatus(stdout).slice(-1)[0];
 
 				if(icon) {
 					root.iconPath = icon.trim();
 				}
-				if(tooltip) {
-					root.dynamicTooltip = tooltip; // do not trim tooltip
+				if(tooltipTitle) {
+					root.dynamicTooltipTitle = tooltipTitle; // do not trim tooltip
+				}
+				if(tooltipBody) {
+					root.dynamicTooltipBody = tooltipBody; // do not trim tooltip
 				}
 				if(status) {
 					root.status = status.trim();
 				}
 
-				root.outputText = stdout;
+				root.lastOutput = stdout;
+				root.lastCommand = cmd.slice(executable.setupCommand.length);
 			}
 		}
 
@@ -173,9 +180,9 @@ Item {
 				id: tooltiparea
 				timeout: -1
 				anchors.fill: parent
-				subText: root.customTooltipCheck? root.dynamicTooltip : root.outputText
+				mainText: root.customTooltipCheck? root.dynamicTooltipTitle : root.lastCommand
+				subText: root.customTooltipCheck? root.dynamicTooltipBody : root.lastOutput
 				enabled: root.showTooltip
-				//textFormat: RichText // doesn't work... anyone knows why????
 			}
 		}
 

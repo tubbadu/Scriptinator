@@ -20,7 +20,8 @@ Kirigami.FormLayout {
 	property alias cfg_setHeight: setHeight.value
 	property alias cfg_setWidth: setWidth.value
 
-	property alias cfg_customTooltip: customTooltip.text
+	property alias cfg_customTooltipTitle: customTooltipTitle.text
+	property alias cfg_customTooltipBody: customTooltipBody.text
 	property alias cfg_customTooltipCheck: customTooltipCheck.checked
 
 	Column{
@@ -86,8 +87,13 @@ Kirigami.FormLayout {
 		}
 		TextBox{
 			enabled: customTooltipCheck.checked
-			id: customTooltip
-			label: i18n("Custom tooltip")
+			id: customTooltipTitle
+			label: i18n("Custom tooltip title")
+		}
+		TextBox{
+			enabled: customTooltipCheck.checked
+			id: customTooltipBody
+			label: i18n("Custom tooltip body")
 		}
 		Label{
 			text: i18n("Set custom height and width. If set to 0, it will be automatic (this will only affect the widget if it is placed in the desktop)")
