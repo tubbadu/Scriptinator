@@ -34,11 +34,6 @@ Item {
 
 		property string outputText: ""
 
-
-		Component.onCompleted: {
-			onStartup();
-		}
-
 		onStatusChanged: {
 			let getStatusCode = {
 				"active": PlasmaCore.Types.ActiveStatus,
@@ -131,7 +126,7 @@ Item {
 		MouseArea {
 			id: mouseArea
 			anchors.fill: parent
-			hoverEnabled: true// config.clickEnabled
+			hoverEnabled: config.onMouseOverScript != ""
 
 			//cursorShape: output.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
 			
@@ -161,11 +156,17 @@ Item {
 				wheel.accepted = true
 			}
 			
-			// ADD HERE THE POSSIBILITY TO CHANGE THE TOOLTIP EVERYTIME MOUSE IS OVER
 			onEntered: { // on mouse over
 				executable.exec(root.onMouseOverScript);
 			}
 			
+
+		}
+
+		PlasmaCore.IconItem {
+			anchors.fill: parent
+			source: root.iconPath
+
 			PlasmaCore.ToolTipArea { // documentation here: https://api.kde.org/frameworks-api/frameworks-apidocs/frameworks/plasma-framework/html/classToolTip.html
 				id: tooltiparea
 				timeout: -1
@@ -174,11 +175,6 @@ Item {
 				enabled: root.showTooltip
 				//textFormat: RichText // doesn't work... anyone knows why????
 			}
-		}
-
-		PlasmaCore.IconItem {
-			anchors.fill: parent
-			source: root.iconPath
 		}
 
 		Timer{
