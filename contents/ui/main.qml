@@ -91,6 +91,37 @@ Item {
 
 		Connections {
 			target: executable
+
+			function extractIcon(text) {
+				const regex = /{PlasmoidIconStart}(.*?){PlasmoidIconEnd}/g;
+				const matches = text.match(regex);
+
+				if (matches) {
+					return matches.map(match => match.replace('{PlasmoidIconStart}', '').replace('{PlasmoidIconEnd}', ''));
+				}
+
+				return [];
+			}
+			function extractTooltip(text) {
+				const regex = /{PlasmoidTooltipStart}(.*?){PlasmoidTooltipEnd}/g;
+				const matches = text.match(regex);
+
+				if (matches) {
+					return matches.map(match => match.replace('{PlasmoidIconStart}', '').replace('{PlasmoidIconEnd}', ''));
+				}
+
+				return [];
+			}
+			function extractStatus(text) {
+				const regex = /{PlasmoidStatusStart}(.*?){PlasmoidStatusEnd}/g;
+				const matches = text.match(regex);
+
+				if (matches) {
+					return matches.map(match => match.replace('{PlasmoidIconStart}', '').replace('{PlasmoidIconEnd}', ''));
+				}
+
+				return [];
+			}
 			onExited: {
 				outputText = stdout.replace('\n', '');
 				if(outputText.includes("{PlasmoidIconStart}") && outputText.includes("{PlasmoidIconEnd}")) {
