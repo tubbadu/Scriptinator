@@ -37,17 +37,7 @@ Item {
 
 		Component.onCompleted: {
 			onStartup();
-			//plasmoid.addEventListener('ConfigChanged', configChanged);
 		}
-
-		/*function configChanged(){ //TODO FIX
-			root.initScript = plasmoid.readConfig("initScript");
-			root.
-			Script = plasmoid.readConfig("onClickScript");
-			root.onClickIcon = plasmoid.readConfig("onClickIcon");
-			root.wheelUpScript = plasmoid.readConfig("wheelUpScript");
-			root.wheelDownScript = plasmoid.readConfig("wheelDownScript");
-		}*/
 
 		onStatusChanged: {
 			let getStatusCode = {
