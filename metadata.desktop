@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=Scriptinator
 Name[en_GB]=Scriptinator
-Comment=Behold! the Scriptinator!\nlaunch custom script and bash commands with a simple mouse gesture
-Comment[en_GB]=Behold! the Scriptinator!\nlaunch custom script and bash commands with a simple mouse gesture
+Comment=Behold! the Scriptinator!\nLaunch custom scripts and bash commands with a simple mouse gesture
+Comment[en_GB]=Behold! the Scriptinator!\nLaunch custom scripts and bash commands with a simple mouse gesture
 
 Icon=utilities-terminal
 Type=Service

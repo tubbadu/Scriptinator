@@ -39,11 +39,11 @@
 	</entry>
 	<entry name="customTooltipHead" type="String">
 		<label>custom tooltip head</label>
-		<default></default>
+		<default>Scriptinator</default>
 	</entry>
 	<entry name="customTooltipBody" type="String">
 		<label>custom tooltip body</label>
-		<default></default>
+		<default>Launch custom script and bash commands with a simple mouse gesture</default>
 	</entry>
 	<entry name="customIcon" type="String">
 		<label>custom icon</label>
