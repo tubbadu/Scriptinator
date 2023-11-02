@@ -37,8 +37,8 @@
 		<label>show tooltip</label>
 		<default>false</default>
 	</entry>
-	<entry name="customTooltipTitle" type="String">
-		<label>custom tooltip title</label>
+	<entry name="customTooltipHead" type="String">
+		<label>custom tooltip head</label>
 		<default></default>
 	</entry>
 	<entry name="customTooltipBody" type="String">

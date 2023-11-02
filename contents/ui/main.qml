@@ -22,7 +22,7 @@ Item {
 		property string customIcon: Plasmoid.configuration.customIcon
 		property bool showBackground: Plasmoid.configuration.showBackground
 		property bool showTooltip: Plasmoid.configuration.showTooltip
-		property string customTooltipTitle: Plasmoid.configuration.customTooltipTitle
+		property string customTooltipHead: Plasmoid.configuration.customTooltipHead
 		property string customTooltipBody: Plasmoid.configuration.customTooltipBody
 		property bool customTooltipCheck: Plasmoid.configuration.customTooltipCheck
 		property int setHeight: Plasmoid.configuration.setHeight
@@ -30,7 +30,7 @@ Item {
 		property int timeout: Plasmoid.configuration.timeout
 		
 		property string iconPath: root.customIcon
-		property string dynamicTooltipTitle: root.customTooltipTitle
+		property string dynamicTooltipHead: root.customTooltipHead
 		property string dynamicTooltipBody: root.customTooltipBody
 		property string status: "passive"
 
@@ -60,7 +60,7 @@ Item {
 			id: executable
 			engine: "executable"
 			connectedSources: []
-			property string setupCommand: 'function scriptinator_icon_set { echo "{PlasmoidIconStart}$1{PlasmoidIconEnd}";}; function scriptinator_tooltip_title_set { echo "{PlasmoidTooltipTitleStart}$1{PlasmoidTooltipTitleEnd}";}; function scriptinator_tooltip_body_set { echo "{PlasmoidTooltipBodyStart}$1{PlasmoidTooltipBodyEnd}";}; function scriptinator_status_set { echo "{PlasmoidStatusStart}$1{PlasmoidStatusEnd}";}; ' // this will allow to just run "scriptinator_icon_set plasma" to set the icon (same for tooltip and status)
+			property string setupCommand: 'function scriptinator_icon_set { echo "{PlasmoidIconStart}$1{PlasmoidIconEnd}";}; function scriptinator_tooltip_head_set { echo "{PlasmoidTooltipHeadStart}$1{PlasmoidTooltipHeadEnd}";}; function scriptinator_tooltip_body_set { echo "{PlasmoidTooltipBodyStart}$1{PlasmoidTooltipBodyEnd}";}; function scriptinator_status_set { echo "{PlasmoidStatusStart}$1{PlasmoidStatusEnd}";}; ' // this will allow to just run "scriptinator_icon_set plasma" to set the icon (same for tooltip and status)
 			onNewData: {
 				var exitCode = data["exit code"]
 				var exitStatus = data["exit status"]
@@ -94,8 +94,8 @@ Item {
 			function extractIcon(text) {
 				return extractFromTags(text, "{PlasmoidIconStart}", "{PlasmoidIconEnd}");
 			}
-			function extractTooltipTitle(text) {
-				return extractFromTags(text, "{PlasmoidTooltipTitleStart}", "{PlasmoidTooltipTitleEnd}");
+			function extractTooltipHead(text) {
+				return extractFromTags(text, "{PlasmoidTooltipHeadStart}", "{PlasmoidTooltipHeadEnd}");
 			}
 			function extractTooltipBody(text) {
 				const ret = extractFromTags(text, "{PlasmoidTooltipBodyStart}", "{PlasmoidTooltipBodyEnd}");
@@ -110,15 +110,15 @@ Item {
 			}
 			function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
 				let icon = extractIcon(stdout).slice(-1)[0];
-				let tooltipTitle = extractTooltipTitle(stdout).slice(-1)[0];
+				let tooltipHead = extractTooltipHead(stdout).slice(-1)[0];
 				let tooltipBody = extractTooltipBody(stdout).slice(-1)[0];
 				let status = extractStatus(stdout).slice(-1)[0];
 
 				if(icon) {
 					root.iconPath = icon.trim();
 				}
-				if(tooltipTitle) {
-					root.dynamicTooltipTitle = tooltipTitle; // do not trim tooltip
+				if(tooltipHead) {
+					root.dynamicTooltipHead = tooltipHead; // do not trim tooltip
 				}
 				if(tooltipBody) {
 					root.dynamicTooltipBody = tooltipBody; // do not trim tooltip
@@ -180,7 +180,7 @@ Item {
 				id: tooltiparea
 				timeout: -1
 				anchors.fill: parent
-				mainText: root.customTooltipCheck? root.dynamicTooltipTitle : root.lastCommand
+				mainText: root.customTooltipCheck? root.dynamicTooltipHead : root.lastCommand
 				subText: root.customTooltipCheck? root.dynamicTooltipBody : root.lastOutput
 				enabled: root.showTooltip
 			}

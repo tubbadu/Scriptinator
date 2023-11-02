@@ -20,7 +20,7 @@ Kirigami.FormLayout {
 	property alias cfg_setHeight: setHeight.value
 	property alias cfg_setWidth: setWidth.value
 
-	property alias cfg_customTooltipTitle: customTooltipTitle.text
+	property alias cfg_customTooltipHead: customTooltipHead.text
 	property alias cfg_customTooltipBody: customTooltipBody.text
 	property alias cfg_customTooltipCheck: customTooltipCheck.checked
 
@@ -87,8 +87,8 @@ Kirigami.FormLayout {
 		}
 		TextBox{
 			enabled: customTooltipCheck.checked
-			id: customTooltipTitle
-			label: i18n("Custom tooltip title")
+			id: customTooltipHead
+			label: i18n("Custom tooltip head")
 		}
 		TextBox{
 			enabled: customTooltipCheck.checked
