@@ -22,7 +22,7 @@
 		<default></default>
 	</entry>
 	<entry name="onMouseOverScript" type="String">
-		<label>WheelDown script</label>
+		<label>MouseOver script</label>
 		<default></default>
 	</entry>
 	<entry name="showBackground" type="Bool">
@@ -37,8 +37,12 @@
 		<label>show tooltip</label>
 		<default>false</default>
 	</entry>
-	<entry name="customTooltip" type="String">
-		<label>WheelDown script</label>
+	<entry name="customTooltipTitle" type="String">
+		<label>custom tooltip title</label>
+		<default></default>
+	</entry>
+	<entry name="customTooltipBody" type="String">
+		<label>custom tooltip body</label>
 		<default></default>
 	</entry>
 	<entry name="customIcon" type="String">
