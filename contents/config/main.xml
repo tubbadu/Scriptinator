@@ -5,67 +5,66 @@
 		http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
 	<kcfgfile name=""/>
 	<group name="General">
-	<entry name="initScript" type="String">
-		<label>Init script</label>
-		<default>scriptinator_icon_set plasma</default>
-	</entry>
-	<entry name="onClickScript" type="String">
-		<label>OnClick script</label>
-		<default></default>
-	</entry>
-	<entry name="wheelUpScript" type="String">
-		<label>WheelUp script</label>
-		<default></default>
-	</entry>
-	<entry name="wheelDownScript" type="String">
-		<label>WheelDown script</label>
-		<default></default>
-	</entry>
-	<entry name="onMouseOverScript" type="String">
-		<label>MouseOver script</label>
-		<default></default>
-	</entry>
-	<entry name="showBackground" type="Bool">
-		<label>show background</label>
-		<default>true</default>
-	</entry>
-	<entry name="showTooltip" type="Bool">
-		<label>show tooltip</label>
-		<default>true</default>
-	</entry>
-	<entry name="customTooltipCheck" type="Bool">
-		<label>show tooltip</label>
-		<default>false</default>
-	</entry>
-	<entry name="customTooltipHead" type="String">
-		<label>custom tooltip head</label>
-		<default>Scriptinator</default>
-	</entry>
-	<entry name="customTooltipBody" type="String">
-		<label>custom tooltip body</label>
-		<default>Launch custom script and bash commands with a simple mouse gesture</default>
-	</entry>
-	<entry name="customIcon" type="String">
-		<label>custom icon</label>
-		<default></default>
-	</entry>
-	<entry name="onClickIcon" type="String">
-		<label>OnClick icon</label>
-		<default></default>
-	</entry>
-	<!--<entry name="setHeight" type="Int">
-			<default>0</default>
-	</entry>
-	<entry name="setWidth" type="Int">
-			<default>0</default>
-	</entry>-->
-	<entry name="timeout" type="Int">
+		<entry name="initScript" type="String">
+			<label>Init script</label>
+			<default>scriptinator_icon_set plasma</default>
+		</entry>
+		<entry name="onClickScript" type="String">
+			<label>OnClick script</label>
+			<default></default>
+		</entry>
+		<entry name="wheelUpScript" type="String">
+			<label>WheelUp script</label>
+			<default></default>
+		</entry>
+		<entry name="wheelDownScript" type="String">
+			<label>WheelDown script</label>
+			<default></default>
+		</entry>
+		<entry name="onMouseOverScript" type="String">
+			<label>MouseOver script</label>
+			<default></default>
+		</entry>
+		<entry name="showBackground" type="Bool">
+			<label>show background</label>
+			<default>true</default>
+		</entry>
+		<entry name="showTooltip" type="Bool">
+			<label>show tooltip</label>
+			<default>true</default>
+		</entry>
+		<entry name="customTooltipCheck" type="Bool">
+			<label>show tooltip</label>
+			<default>false</default>
+		</entry>
+		<entry name="customTooltipHead" type="String">
+			<label>custom tooltip head</label>
+			<default>Scriptinator</default>
+		</entry>
+		<entry name="customTooltipBody" type="String">
+			<label>custom tooltip body</label>
+			<default>Launch custom script and bash commands with a simple mouse gesture</default>
+		</entry>
+		<entry name="customIcon" type="String">
+			<label>custom icon</label>
+			<default></default>
+		</entry>
+		<entry name="onClickIcon" type="String">
+			<label>OnClick icon</label>
+			<default></default>
+		</entry>
+		<!--<entry name="setHeight" type="Int">
+				<default>0</default>
+		</entry>
+		<entry name="setWidth" type="Int">
+				<default>0</default>
+		</entry>-->
+		<entry name="timeout" type="Int">
 			<default>60</default>
-	</entry>
-	<entry name="periodicScript" type="String">
-		<label>Periodic script</label>
-		<default></default>
-	</entry>
-	
+		</entry>
+		<entry name="periodicScript" type="String">
+			<label>Periodic script</label>
+			<default></default>
+		</entry>
 	</group>
 </kcfg>
