@@ -60,7 +60,7 @@ Item {
 			id: executable
 			engine: "executable"
 			connectedSources: []
-			property string setupCommand: 'function scriptinator_icon_set { echo "{PlasmoidIconStart}$1{PlasmoidIconEnd}";}; function scriptinator_tooltip_set { echo "{PlasmoidTooltipStart}$1{PlasmoidTooltipEnd}";}; function scriptinator_status_set { echo "{PlasmoidStatusStart}$1{PlasmoidStatusEnd}";}; ' // this will allow to just run "scriptinator_icon_set plasma" to set the icon (same for tooltip and status)
+			property string setupCommand: 'function scriptinator_icon_set { echo "{PlasmoidIconStart}$1{PlasmoidIconEnd}";}; function scriptinator_tooltip_title_set { echo "{PlasmoidTooltipTitleStart}$1{PlasmoidTooltipTitleEnd}";}; function scriptinator_tooltip_body_set { echo "{PlasmoidTooltipBodyStart}$1{PlasmoidTooltipBodyEnd}";}; function scriptinator_status_set { echo "{PlasmoidStatusStart}$1{PlasmoidStatusEnd}";}; ' // this will allow to just run "scriptinator_icon_set plasma" to set the icon (same for tooltip and status)
 			onNewData: {
 				var exitCode = data["exit code"]
 				var exitStatus = data["exit status"]
