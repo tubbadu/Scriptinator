@@ -72,7 +72,7 @@ Item {
 			id: executable
 			engine: "executable"
 			connectedSources: []
-			property string setupCommand: "scriptinator_icon_set() { echo \"{PlasmoidIconStart}$1{PlasmoidIconEnd}\"}; scriptinator_tooltip_set() { echo \"{PlasmoidTooltipStart}$1{PlasmoidTooltipEnd}\"}; " // this will allow to just run "scriptinator_icon_set plasma" to set the icon (same for tooltip)
+			property string setupCommand: 'function scriptinator_icon_set { echo "{PlasmoidIconStart}$1{PlasmoidIconEnd}";}; function scriptinator_tooltip_set { echo "{PlasmoidTooltipStart}$1{PlasmoidTooltipEnd}";}; function scriptinator_icon_set { echo "{PlasmoidStatusStart}$1{PlasmoidStatusEnd}";}; ' // this will allow to just run "scriptinator_icon_set plasma" to set the icon (same for tooltip and status)
 			onNewData: {
 				var exitCode = data["exit code"]
 				var exitStatus = data["exit status"]
@@ -84,7 +84,7 @@ Item {
 			function exec(cmd) {
 				console.warn("exec", cmd)
 				if (cmd) {
-					connectSource(cmd)
+					connectSource(setupCommand + cmd)
 				}
 			}
 			signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
@@ -124,7 +124,7 @@ Item {
 				return [];
 			}*/
 			function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
-				console.warn("exited", stdout)
+				console.warn("exited", stdout, stderr)
 				outputText = stdout.replace('\n', '');
 				if(outputText.includes("{PlasmoidIconStart}") && outputText.includes("{PlasmoidIconEnd}")) {
 					iconPath = outputText.substring(outputText.search("{PlasmoidIconStart}") + 19, outputText.search("{PlasmoidIconEnd}"));
@@ -205,9 +205,9 @@ Item {
 		
 		Plasmoid.backgroundHints: showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
 		
-		/*Layout.maximumHeight: setHeight == 0 ? parent.height : setHeight
-		Layout.minimumHeight: setHeight == 0 ? parent.height : setHeight
+		/*Layout.maximumHeight: setHeight == 0 ? parent.Height : setHeight
+		Layout.minimumHeight: setHeight == 0 ? parent.Height : setHeight
 		
-		Layout.maximumWidth: setWidth == 0 ? parent.width : setWidth
-		Layout.minimumWidth: setWidth == 0 ? parent.width : setWidth*/
+		Layout.maximumWidth: setWidth == 0 ? parent.Width : setWidth
+		Layout.minimumWidth: setWidth == 0 ? parent.Width : setWidth*/
 }
