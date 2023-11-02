@@ -72,6 +72,7 @@ Item {
 			id: executable
 			engine: "executable"
 			connectedSources: []
+			property string setupCommand: "scriptinator_icon_set() { echo \"{PlasmoidIconStart}$1{PlasmoidIconEnd}\"}; scriptinator_tooltip_set() { echo \"{PlasmoidTooltipStart}$1{PlasmoidTooltipEnd}\"}; " // this will allow to just run "scriptinator_icon_set plasma" to set the icon (same for tooltip)
 			onNewData: {
 				var exitCode = data["exit code"]
 				var exitStatus = data["exit status"]
@@ -82,7 +83,7 @@ Item {
 			}
 			function exec(cmd) {
 				if (cmd) {
-					connectSource(cmd)
+					connectSource(setupCommand + cmd)
 				}
 			}
 			signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
