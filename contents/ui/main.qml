@@ -57,7 +57,7 @@ Item {
 			id: executable
 			engine: "executable"
 			connectedSources: []
-			property string setupCommand: 'function scriptinator_icon_set { echo "{PlasmoidIconStart}$1{PlasmoidIconEnd}";}; function scriptinator_tooltip_set { echo "{PlasmoidTooltipStart}$1{PlasmoidTooltipEnd}";}; function scriptinator_icon_set { echo "{PlasmoidStatusStart}$1{PlasmoidStatusEnd}";}; ' // this will allow to just run "scriptinator_icon_set plasma" to set the icon (same for tooltip and status)
+			property string setupCommand: 'function scriptinator_icon_set { echo "{PlasmoidIconStart}$1{PlasmoidIconEnd}";}; function scriptinator_tooltip_set { echo "{PlasmoidTooltipStart}$1{PlasmoidTooltipEnd}";}; function scriptinator_status_set { echo "{PlasmoidStatusStart}$1{PlasmoidStatusEnd}";}; ' // this will allow to just run "scriptinator_icon_set plasma" to set the icon (same for tooltip and status)
 			onNewData: {
 				var exitCode = data["exit code"]
 				var exitStatus = data["exit status"]
@@ -78,9 +78,10 @@ Item {
 			target: executable
 
 			function extractIcon(text) {
+				console.warn(text)
 				const regex = /{PlasmoidIconStart}(.*?){PlasmoidIconEnd}/g;
 				const matches = text.match(regex);
-
+				console.warn(matches)
 				if (matches) {
 					return matches.map(match => match.replace('{PlasmoidIconStart}', '').replace('{PlasmoidIconEnd}', ''));
 				}
@@ -92,7 +93,7 @@ Item {
 				const matches = text.match(regex);
 
 				if (matches) {
-					return matches.map(match => match.replace('{PlasmoidIconStart}', '').replace('{PlasmoidIconEnd}', ''));
+					return matches.map(match => match.replace('{PlasmoidTooltipStart}', '').replace('{PlasmoidTooltipEnd}', ''));
 				}
 
 				return [];
@@ -102,27 +103,27 @@ Item {
 				const matches = text.match(regex);
 
 				if (matches) {
-					return matches.map(match => match.replace('{PlasmoidIconStart}', '').replace('{PlasmoidIconEnd}', ''));
+					return matches.map(match => match.replace('{PlasmoidStatusStart}', '').replace('{PlasmoidStatusEnd}', ''));
 				}
 
 				return [];
 			}
 			function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
 				let icon = extractIcon(stdout).slice(-1)[0];
-				let tooltip = extractTooltip(stdout).slice(-1);[0]
+				let tooltip = extractTooltip(stdout).slice(-1)[0];
 				let status = extractStatus(stdout).slice(-1)[0];
 
 				if(icon) {
 					root.iconPath = icon.trim();
 				}
 				if(tooltip) {
-					root.dynamicTooltip = tooltip + ""; // do not trim tooltip
+					root.dynamicTooltip = tooltip; // do not trim tooltip
 				}
 				if(status) {
-					root.status = tooltip.trim();
+					root.status = status.trim();
 				}
 
-				root.outputText = stdout + "";
+				root.outputText = stdout;
 			}
 		}
 
