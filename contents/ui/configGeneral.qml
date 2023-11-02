@@ -17,8 +17,8 @@ Kirigami.FormLayout {
 	property alias cfg_customIcon: customIcon.text
 	property alias cfg_showBackground: showBackground.checked
 	property alias cfg_showTooltip: showTooltip.checked
-	property alias cfg_setHeight: setHeight.value
-	property alias cfg_setWidth: setWidth.value
+	//property alias cfg_setHeight: setHeight.value
+	//property alias cfg_setWidth: setWidth.value
 
 	property alias cfg_customTooltipHead: customTooltipHead.text
 	property alias cfg_customTooltipBody: customTooltipBody.text
@@ -100,7 +100,7 @@ Kirigami.FormLayout {
 			width: page.width
 			wrapMode: Label.Wrap
 		}
-		RowLayout {
+		/*RowLayout {
 			id: setSize
 			spacing: 6
 			Label{
@@ -120,7 +120,7 @@ Kirigami.FormLayout {
 				to: 3000
 			}
 			width: page.width
-		}
+		}*/
 	}
 }
 

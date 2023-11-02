@@ -53,12 +53,12 @@
 		<label>OnClick icon</label>
 		<default></default>
 	</entry>
-	<entry name="setHeight" type="Int">
+	<!--<entry name="setHeight" type="Int">
 			<default>0</default>
 	</entry>
 	<entry name="setWidth" type="Int">
 			<default>0</default>
-	</entry>
+	</entry>-->
 	<entry name="timeout" type="Int">
 			<default>60</default>
 	</entry>

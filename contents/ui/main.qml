@@ -25,8 +25,8 @@ Item {
 		property string customTooltipHead: Plasmoid.configuration.customTooltipHead
 		property string customTooltipBody: Plasmoid.configuration.customTooltipBody
 		property bool customTooltipCheck: Plasmoid.configuration.customTooltipCheck
-		property int setHeight: Plasmoid.configuration.setHeight
-		property int setWidth: Plasmoid.configuration.setWidth
+		//property int setHeight: Plasmoid.configuration.setHeight
+		//property int setWidth: Plasmoid.configuration.setWidth
 		property int timeout: Plasmoid.configuration.timeout
 		
 		property string iconPath: root.customIcon
@@ -197,10 +197,8 @@ Item {
 		}
 
 		Plasmoid.backgroundHints: showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
-		
-		/*Layout.maximumHeight: setHeight == 0 ? parent.Height : setHeight
-		Layout.minimumHeight: setHeight == 0 ? parent.Height : setHeight
-		
-		Layout.maximumWidth: setWidth == 0 ? parent.Width : setWidth
-		Layout.minimumWidth: setWidth == 0 ? parent.Width : setWidth*/
+
+
+		//Layout.preferredHeight: setHeight == 0 ? -1 : setHeight
+		//Layout.preferredWidth: setWidth == 0 ? -1 : setWidth
 }
