@@ -28,9 +28,12 @@ Item {
 		property int setWidth: Plasmoid.configuration.setWidth
 		property int timeout: Plasmoid.configuration.timeout
 		
-		property string iconPath: ""
-		property string dynamicTooltip: ""
+		property string iconPath: root.customIcon
+		property string dynamicTooltip: root.customTooltip
+		property string status: "passive"
+
 		property string outputText: ""
+
 
 		Component.onCompleted: {
 			onStartup();
@@ -45,22 +48,15 @@ Item {
 			root.wheelUpScript = plasmoid.readConfig("wheelUpScript");
 			root.wheelDownScript = plasmoid.readConfig("wheelDownScript");
 		}*/
-		
-		function onStartup(){
-			dynamicTooltip = customTooltip;
-			iconPath = customIcon;
-			executable.exec(initScript);
-			setStatus("passive")
-		}
 
-		function setStatus(s){
+		onStatusChanged: {
 			let getStatusCode = {
 				"active": PlasmaCore.Types.ActiveStatus,
 				"passive": PlasmaCore.Types.PassiveStatus,
 				"attention": PlasmaCore.Types.NeedsAttentionStatus,
 				"hidden": PlasmaCore.Types.Hidden
 			}
-			let newStatus = getStatusCode[s.toLowerCase()]
+			let newStatus = getStatusCode[root.status.toLowerCase()]
 			if(newStatus === undefined){
 				newStatus = getStatusCode["active"]
 			}
@@ -93,7 +89,7 @@ Item {
 		Connections {
 			target: executable
 
-			/*function extractIcon(text) {
+			function extractIcon(text) {
 				const regex = /{PlasmoidIconStart}(.*?){PlasmoidIconEnd}/g;
 				const matches = text.match(regex);
 
@@ -122,18 +118,20 @@ Item {
 				}
 
 				return [];
-			}*/
+			}
 			function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
-				console.warn("exited", stdout, stderr)
-				outputText = stdout.replace('\n', '');
-				if(outputText.includes("{PlasmoidIconStart}") && outputText.includes("{PlasmoidIconEnd}")) {
-					iconPath = outputText.substring(outputText.search("{PlasmoidIconStart}") + 19, outputText.search("{PlasmoidIconEnd}"));
+				let icon = extractIcon(stdout).slice(-1)[0];
+				let tooltip = extractTooltip(stdout).slice(-1);[0]
+				let status = extractStatus(stdout).slice(-1)[0];
+
+				if(icon) {
+					root.iconPath = icon.trim();
 				}
-				if(outputText.includes("{PlasmoidTooltipStart}") && outputText.includes("{PlasmoidTooltipEnd}")) {
-					dynamicTooltip = outputText.substring(outputText.search("{PlasmoidTooltipStart}") + 22, outputText.search("{PlasmoidTooltipEnd}"));
+				if(tooltip) {
+					root.dynamicTooltip = tooltip; // do not trim tooltip
 				}
-				if(outputText.includes("{PlasmoidStatusStart}") && outputText.includes("{PlasmoidStatusEnd}")) {
-					root.setStatus(outputText.substring(outputText.search("{PlasmoidStatusStart}") + 21, outputText.search("{PlasmoidStatusEnd}")).trim());
+				if(status) {
+					root.status = tooltip.trim();
 				}
 			}
 		}
@@ -146,10 +144,10 @@ Item {
 			//cursorShape: output.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
 			
 			onClicked: {
-				if(onClickIcon != ""){
-					parent.iconPath = onClickIcon;
+				if(root.onClickIcon != ""){
+					parent.iconPath = root.onClickIcon;
 				}
-				executable.exec(onClickScript)
+				executable.exec(root.onClickScript)
 			}
 
 			property int wheelDelta: 0
@@ -161,48 +159,46 @@ Item {
 				while (wheelDelta >= 120) {
 					wheelDelta -= 120
 					//WheelUp
-					executable.exec(wheelUpScript)
+					executable.exec(root.wheelUpScript)
 				}
 				while (wheelDelta <= -120) {
 					wheelDelta += 120
 					//WheelDown
-					executable.exec(wheelDownScript);
+					executable.exec(root.wheelDownScript);
 				}
 				wheel.accepted = true
 			}
 			
 			// ADD HERE THE POSSIBILITY TO CHANGE THE TOOLTIP EVERYTIME MOUSE IS OVER
 			onEntered: { // on mouse over
-				executable.exec(onMouseOverScript);
+				executable.exec(root.onMouseOverScript);
 			}
 			
 			PlasmaCore.ToolTipArea { // documentation here: https://api.kde.org/frameworks-api/frameworks-apidocs/frameworks/plasma-framework/html/classToolTip.html
-				id: tooltip
+				id: tooltiparea
 				timeout: -1
 				anchors.fill: parent
-				subText: customTooltipCheck? dynamicTooltip : outputText
-				enabled: showTooltip
+				subText: root.customTooltipCheck? root.dynamicTooltip : root.outputText
+				enabled: root.showTooltip
 				//textFormat: RichText // doesn't work... anyone knows why????
 			}
 		}
 
 		PlasmaCore.IconItem {
 			anchors.fill: parent
-			source: iconPath
+			source: root.iconPath
 		}
 
 		Timer{
-			running: timeout != 0
-			interval: Math.trunc(timeout * 1000)
+			running: root.timeout != 0
+			interval: Math.trunc(root.timeout * 1000)
 			repeat: true
 			triggeredOnStart: true
 			onTriggered: {
-				executable.exec(periodicScript)
+				executable.exec(root.periodicScript)
 			}
 		}
 
-		
-		
 		Plasmoid.backgroundHints: showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
 		
 		/*Layout.maximumHeight: setHeight == 0 ? parent.Height : setHeight
