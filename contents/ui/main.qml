@@ -133,6 +133,8 @@ Item {
 				if(status) {
 					root.status = tooltip.trim();
 				}
+
+				root.outputText = stdout;
 			}
 		}
 
