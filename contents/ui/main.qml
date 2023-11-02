@@ -82,8 +82,9 @@ Item {
 				disconnectSource(sourceName) // cmd finished
 			}
 			function exec(cmd) {
+				console.warn("exec", cmd)
 				if (cmd) {
-					connectSource(setupCommand + cmd)
+					connectSource(cmd)
 				}
 			}
 			signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
@@ -92,7 +93,7 @@ Item {
 		Connections {
 			target: executable
 
-			function extractIcon(text) {
+			/*function extractIcon(text) {
 				const regex = /{PlasmoidIconStart}(.*?){PlasmoidIconEnd}/g;
 				const matches = text.match(regex);
 
@@ -121,8 +122,9 @@ Item {
 				}
 
 				return [];
-			}
-			onExited: {
+			}*/
+			function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
+				console.warn("exited", stdout)
 				outputText = stdout.replace('\n', '');
 				if(outputText.includes("{PlasmoidIconStart}") && outputText.includes("{PlasmoidIconEnd}")) {
 					iconPath = outputText.substring(outputText.search("{PlasmoidIconStart}") + 19, outputText.search("{PlasmoidIconEnd}"));
@@ -203,9 +205,9 @@ Item {
 		
 		Plasmoid.backgroundHints: showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
 		
-		Layout.maximumHeight: setHeight == 0 ? parent.Height : setHeight
-		Layout.minimumHeight: setHeight == 0 ? parent.Height : setHeight
+		/*Layout.maximumHeight: setHeight == 0 ? parent.height : setHeight
+		Layout.minimumHeight: setHeight == 0 ? parent.height : setHeight
 		
-		Layout.maximumWidth: setWidth == 0 ? parent.Width : setWidth
-		Layout.minimumWidth: setWidth == 0 ? parent.Width : setWidth
+		Layout.maximumWidth: setWidth == 0 ? parent.width : setWidth
+		Layout.minimumWidth: setWidth == 0 ? parent.width : setWidth*/
 }
