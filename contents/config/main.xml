@@ -7,19 +7,19 @@
 	<group name="General">
 	<entry name="initScript" type="String">
 		<label>Init script</label>
-		<default>echo '{PlasmoidIconStart}plasma{PlasmoidIconEnd}'</default>
+		<default>scriptinator_icon_set plasma</default>
 	</entry>
 	<entry name="onClickScript" type="String">
 		<label>OnClick script</label>
-		<default>echo ''</default>
+		<default></default>
 	</entry>
 	<entry name="wheelUpScript" type="String">
 		<label>WheelUp script</label>
-		<default>echo ''</default>
+		<default></default>
 	</entry>
 	<entry name="wheelDownScript" type="String">
 		<label>WheelDown script</label>
-		<default>echo ''</default>
+		<default></default>
 	</entry>
 	<entry name="onMouseOverScript" type="String">
 		<label>WheelDown script</label>
@@ -60,7 +60,7 @@
 	</entry>
 	<entry name="periodicScript" type="String">
 		<label>Periodic script</label>
-		<default>echo ''</default>
+		<default></default>
 	</entry>
 	
 	</group>
