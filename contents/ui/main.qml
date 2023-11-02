@@ -34,6 +34,10 @@ Item {
 
 		property string outputText: ""
 
+		Component.onCompleted: {
+			executable.exec(root.initScript);
+		}
+
 		onStatusChanged: {
 			let getStatusCode = {
 				"active": PlasmaCore.Types.ActiveStatus,
@@ -113,20 +117,20 @@ Item {
 					root.iconPath = icon.trim();
 				}
 				if(tooltip) {
-					root.dynamicTooltip = tooltip; // do not trim tooltip
+					root.dynamicTooltip = tooltip + ""; // do not trim tooltip
 				}
 				if(status) {
 					root.status = tooltip.trim();
 				}
 
-				root.outputText = stdout;
+				root.outputText = stdout + "";
 			}
 		}
 
 		MouseArea {
 			id: mouseArea
 			anchors.fill: parent
-			hoverEnabled: config.onMouseOverScript != ""
+			hoverEnabled: root.onMouseOverScript != ""
 
 			//cursorShape: output.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
 			
