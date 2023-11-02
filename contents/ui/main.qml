@@ -78,10 +78,8 @@ Item {
 			target: executable
 
 			function extractIcon(text) {
-				console.warn(text)
 				const regex = /{PlasmoidIconStart}(.*?){PlasmoidIconEnd}/g;
 				const matches = text.match(regex);
-				console.warn(matches)
 				if (matches) {
 					return matches.map(match => match.replace('{PlasmoidIconStart}', '').replace('{PlasmoidIconEnd}', ''));
 				}
