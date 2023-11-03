@@ -17,6 +17,8 @@ Kirigami.FormLayout {
 	property alias cfg_customIcon: customIcon.text
 	property alias cfg_showBackground: showBackground.checked
 	property alias cfg_showTooltip: showTooltip.checked
+	property alias cfg_customText: customText.text
+	property alias cfg_customTextAlign: customTextAlign.currentValue
 	//property alias cfg_setHeight: setHeight.value
 	//property alias cfg_setWidth: setWidth.value
 
@@ -95,12 +97,31 @@ Kirigami.FormLayout {
 			id: customTooltipBody
 			label: i18n("Custom tooltip body")
 		}
-		Label{
+		TextBox{
+			enabled: customTooltipCheck.checked
+			id: customText
+			label: i18n("Custom text")
+		}
+		Label {
+			text: i18n("Custom text vertical alignment")
+		}
+		ComboBox {
+			id: customTextAlign
+			textRole: "text"
+			valueRole: "value"
+			model: [
+				{text: "Center", value: Label.AlignVCenter},
+				{text: "Top", value: Label.AlignTop},
+				{text: "Bottom", value: Label.AlignBottom}
+			]
+		}
+
+		/*Label{
 			text: i18n("Set custom height and width. If set to 0, it will be automatic (this will only affect the widget if it is placed in the desktop)")
 			width: page.width
 			wrapMode: Label.Wrap
 		}
-		/*RowLayout {
+		RowLayout {
 			id: setSize
 			spacing: 6
 			Label{

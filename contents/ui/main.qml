@@ -1,15 +1,11 @@
-import QtQuick.Layouts 1.0
 import QtQuick 2.0
+import QtQuick.Layouts 1.0
+import QtQuick.Controls 2.5
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 Item {
 		id: root
-	
-	//	Text {
-	//		text: customTooltipCheck? dynamicTooltip : outputText
-	//		color: "white"
-	//	}
 	
 		Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
 		property string initScript: Plasmoid.configuration.initScript
@@ -25,6 +21,9 @@ Item {
 		property string customTooltipHead: Plasmoid.configuration.customTooltipHead
 		property string customTooltipBody: Plasmoid.configuration.customTooltipBody
 		property bool customTooltipCheck: Plasmoid.configuration.customTooltipCheck
+		property string customText: Plasmoid.configuration.customText
+		property int customTextAlign: Plasmoid.configuration.customTextAlign? Plasmoid.configuration.customTextAlign : Label.AlignVCenter
+
 		//property int setHeight: Plasmoid.configuration.setHeight
 		//property int setWidth: Plasmoid.configuration.setWidth
 		property int timeout: Plasmoid.configuration.timeout
@@ -33,6 +32,7 @@ Item {
 		property string dynamicTooltipHead: root.customTooltipHead
 		property string dynamicTooltipBody: root.customTooltipBody
 		property string status: "passive"
+		property string text: root.customText
 
 		property string lastOutput: ""
 		property string lastCommand: ""
@@ -60,7 +60,7 @@ Item {
 			id: executable
 			engine: "executable"
 			connectedSources: []
-			property string setupCommand: 'function scriptinator_icon_set { echo "{PlasmoidIconStart}$1{PlasmoidIconEnd}";}; function scriptinator_tooltip_head_set { echo "{PlasmoidTooltipHeadStart}$1{PlasmoidTooltipHeadEnd}";}; function scriptinator_tooltip_body_set { echo "{PlasmoidTooltipBodyStart}$1{PlasmoidTooltipBodyEnd}";}; function scriptinator_status_set { echo "{PlasmoidStatusStart}$1{PlasmoidStatusEnd}";}; ' // this will allow to just run "scriptinator_icon_set plasma" to set the icon (same for tooltip and status)
+			property string setupCommand: 'function scriptinator_icon_set { echo "{PlasmoidIconStart}$@{PlasmoidIconEnd}";}; function scriptinator_tooltip_head_set { echo "{PlasmoidTooltipHeadStart}$@{PlasmoidTooltipHeadEnd}";}; function scriptinator_tooltip_body_set { echo "{PlasmoidTooltipBodyStart}$@{PlasmoidTooltipBodyEnd}";}; function scriptinator_status_set { echo "{PlasmoidStatusStart}$@{PlasmoidStatusEnd}";}; function scriptinator_text_set { echo "{PlasmoidTextStart}$@{PlasmoidTextEnd}";}; ' // this will allow to just run "scriptinator_icon_set plasma" to set the icon (same for tooltip, text and status)
 			onNewData: {
 				var exitCode = data["exit code"]
 				var exitStatus = data["exit status"]
@@ -94,6 +94,9 @@ Item {
 			function extractIcon(text) {
 				return extractFromTags(text, "{PlasmoidIconStart}", "{PlasmoidIconEnd}");
 			}
+			function extractText(text) {
+				return extractFromTags(text, "{PlasmoidTextStart}", "{PlasmoidTextEnd}");
+			}
 			function extractTooltipHead(text) {
 				return extractFromTags(text, "{PlasmoidTooltipHeadStart}", "{PlasmoidTooltipHeadEnd}");
 			}
@@ -109,10 +112,12 @@ Item {
 				return extractFromTags(text, "{PlasmoidStatusStart}", "{PlasmoidStatusEnd}");
 			}
 			function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
+				// slice(-1) is used to get the last one
 				let icon = extractIcon(stdout).slice(-1)[0];
 				let tooltipHead = extractTooltipHead(stdout).slice(-1)[0];
 				let tooltipBody = extractTooltipBody(stdout).slice(-1)[0];
 				let status = extractStatus(stdout).slice(-1)[0];
+				let text = extractText(stdout).slice(-1)[0];
 
 				if(icon) {
 					root.iconPath = icon.trim();
@@ -125,6 +130,11 @@ Item {
 				}
 				if(status) {
 					root.status = status.trim();
+				}
+				if(text) {
+					console.warn(text, root.text)
+					root.text = text; // do not trim text
+					console.warn(text, root.text)
 				}
 
 				root.lastOutput = stdout;
@@ -176,13 +186,21 @@ Item {
 			anchors.fill: parent
 			source: root.iconPath
 
-			PlasmaCore.ToolTipArea { // documentation here: https://api.kde.org/frameworks-api/frameworks-apidocs/frameworks/plasma-framework/html/classToolTip.html
+			PlasmaCore.ToolTipArea { // documentation here: https://api.kde.org/frameworks-api/frameworks-apidocs/frameworks/plasma-framework/html/classToolTip.html // dead link
 				id: tooltiparea
 				timeout: -1
 				anchors.fill: parent
 				mainText: root.customTooltipCheck? root.dynamicTooltipHead : root.lastCommand
 				subText: root.customTooltipCheck? root.dynamicTooltipBody : root.lastOutput
 				enabled: root.showTooltip
+			}
+
+			Label {
+				anchors.fill: parent
+				verticalAlignment: root.customTextAlign
+				horizontalAlignment: Text.AlignHCenter
+				wrapMode: Label.Wrap
+				text: root.text
 			}
 		}
 
@@ -197,7 +215,6 @@ Item {
 		}
 
 		Plasmoid.backgroundHints: showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
-
 
 		//Layout.preferredHeight: setHeight == 0 ? -1 : setHeight
 		//Layout.preferredWidth: setWidth == 0 ? -1 : setWidth
