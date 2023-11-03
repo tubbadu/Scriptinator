@@ -53,6 +53,13 @@
 			<label>OnClick icon</label>
 			<default></default>
 		</entry>
+		<entry name="customText" type="String">
+			<label>Custom text</label>
+			<default></default>
+		</entry>
+		<entry name="customTextAlign" type="Int">
+				<default></default>
+		</entry>
 		<!--<entry name="setHeight" type="Int">
 				<default>0</default>
 		</entry>
