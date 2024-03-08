@@ -10,25 +10,25 @@ PlasmoidItem {
 		id: root
 	
 		preferredRepresentation: fullRepresentation
-		property string initScript: configuration.initScript
-		property string onClickScript: configuration.onClickScript
-		property string onClickIcon: configuration.onClickIcon
-		property string wheelUpScript: configuration.wheelUpScript
-		property string wheelDownScript: configuration.wheelDownScript
-		property string periodicScript: configuration.periodicScript
-		property string onMouseOverScript: configuration.onMouseOverScript
-		property string customIcon: configuration.customIcon
-		property bool showBackground: configuration.showBackground
-		property bool showTooltip: configuration.showTooltip
-		property string customTooltipHead: configuration.customTooltipHead
-		property string customTooltipBody: configuration.customTooltipBody
-		property bool customTooltipCheck: configuration.customTooltipCheck
-		property string customText: configuration.customText
-		property int customTextAlign: configuration.customTextAlign? configuration.customTextAlign : Label.AlignVCenter
+		property string initScript: plasmoid.configuration.initScript
+		property string onClickScript: plasmoid.configuration.onClickScript
+		property string onClickIcon: plasmoid.configuration.onClickIcon
+		property string wheelUpScript: plasmoid.configuration.wheelUpScript
+		property string wheelDownScript: plasmoid.configuration.wheelDownScript
+		property string periodicScript: plasmoid.configuration.periodicScript
+		property string onMouseOverScript: plasmoid.configuration.onMouseOverScript
+		property string customIcon: plasmoid.configuration.customIcon
+		property bool showBackground: plasmoid.configuration.showBackground
+		property bool showTooltip: plasmoid.configuration.showTooltip
+		property string customTooltipHead: plasmoid.configuration.customTooltipHead
+		property string customTooltipBody: plasmoid.configuration.customTooltipBody
+		property bool customTooltipCheck: plasmoid.configuration.customTooltipCheck
+		property string customText: plasmoid.configuration.customText
+		property int customTextAlign: plasmoid.configuration.customTextAlign? plasmoid.configuration.customTextAlign : Label.AlignVCenter
 
-		//property int setHeight: configuration.setHeight
-		//property int setWidth: configuration.setWidth
-		property int timeout: configuration.timeout
+		//property int setHeight: plasmoid.configuration.setHeight
+		//property int setWidth: plasmoid.configuration.setWidth
+		property int timeout: plasmoid.configuration.timeout
 		
 		property string iconPath: root.customIcon
 		property string dynamicTooltipHead: root.customTooltipHead
@@ -216,7 +216,7 @@ PlasmoidItem {
 			}
 		}
 
-		backgroundHints: showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
+		//plasmoid.backgroundHints: showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
 
 		//Layout.preferredHeight: setHeight == 0 ? -1 : setHeight
 		//Layout.preferredWidth: setWidth == 0 ? -1 : setWidth
