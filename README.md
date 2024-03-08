@@ -2,6 +2,8 @@
 
 ---
 
+> NOTE: this is the last commit to the Plasma 5 version of the applet. I won't be working on this version anymore, but eventual merge request to this branch are welcome anyway. The main branch is now dedicated to the Plasma 6 version.
+
 ## install
 
 to install Scriptinator you can use the `install.sh` script:
