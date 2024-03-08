@@ -1,0 +1,26 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "tubbadu@gmail.com",
+                "Name": "tubbadu"
+            }
+        ],
+        "Category": "Utilities",
+        "Description": "Behold! the Scriptinator!\nLaunch custom scripts and bash commands with a simple mouse gesture",
+        "Description[en_GB]": "Behold! the Scriptinator!\nLaunch custom scripts and bash commands with a simple mouse gesture",
+        "Icon": "utilities-terminal",
+        "Id": "com.github.scriptinator",
+        "License": "GPL",
+        "Name": "Scriptinator",
+        "Name[en_GB]": "Scriptinator",
+        "Version": "1.1",
+        "Website": "https://github.com/tubbadu/Scriptinator"
+    },
+    "X-Plasma-NotificationArea": "true",
+    "X-Plasma-NotificationAreaCategory": "SystemServices",
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "KPackageStructure": [
+        "Plasma/Applet"
+    ]
+}

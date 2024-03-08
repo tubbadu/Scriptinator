@@ -2,6 +2,8 @@
 
 ---
 
+> NOTE: this is the Plasma 6 port of Scriptinator. The Plasma 5 version can still be found in the `plasma5-branch` branch, but I won't be working on it anymore. Eventual merge request to that branch are welcome anyway!
+
 ## install
 
 to install Scriptinator you can use the `install.sh` script:
