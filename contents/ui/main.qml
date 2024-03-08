@@ -1,32 +1,34 @@
-import QtQuick 2.0
-import QtQuick.Layouts 1.0
-import QtQuick.Controls 2.5
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+import QtQuick 
+import QtQuick.Layouts 
+import QtQuick.Controls 
+import org.kde.plasma.plasmoid 
+import org.kde.plasma.core as PlasmaCore
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.plasma5support as Plasma5Support
 
-Item {
+PlasmoidItem {
 		id: root
 	
-		Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
-		property string initScript: Plasmoid.configuration.initScript
-		property string onClickScript: Plasmoid.configuration.onClickScript
-		property string onClickIcon: Plasmoid.configuration.onClickIcon
-		property string wheelUpScript: Plasmoid.configuration.wheelUpScript
-		property string wheelDownScript: Plasmoid.configuration.wheelDownScript
-		property string periodicScript: Plasmoid.configuration.periodicScript
-		property string onMouseOverScript: Plasmoid.configuration.onMouseOverScript
-		property string customIcon: Plasmoid.configuration.customIcon
-		property bool showBackground: Plasmoid.configuration.showBackground
-		property bool showTooltip: Plasmoid.configuration.showTooltip
-		property string customTooltipHead: Plasmoid.configuration.customTooltipHead
-		property string customTooltipBody: Plasmoid.configuration.customTooltipBody
-		property bool customTooltipCheck: Plasmoid.configuration.customTooltipCheck
-		property string customText: Plasmoid.configuration.customText
-		property int customTextAlign: Plasmoid.configuration.customTextAlign? Plasmoid.configuration.customTextAlign : Label.AlignVCenter
+		preferredRepresentation: fullRepresentation
+		property string initScript: configuration.initScript
+		property string onClickScript: configuration.onClickScript
+		property string onClickIcon: configuration.onClickIcon
+		property string wheelUpScript: configuration.wheelUpScript
+		property string wheelDownScript: configuration.wheelDownScript
+		property string periodicScript: configuration.periodicScript
+		property string onMouseOverScript: configuration.onMouseOverScript
+		property string customIcon: configuration.customIcon
+		property bool showBackground: configuration.showBackground
+		property bool showTooltip: configuration.showTooltip
+		property string customTooltipHead: configuration.customTooltipHead
+		property string customTooltipBody: configuration.customTooltipBody
+		property bool customTooltipCheck: configuration.customTooltipCheck
+		property string customText: configuration.customText
+		property int customTextAlign: configuration.customTextAlign? configuration.customTextAlign : Label.AlignVCenter
 
-		//property int setHeight: Plasmoid.configuration.setHeight
-		//property int setWidth: Plasmoid.configuration.setWidth
-		property int timeout: Plasmoid.configuration.timeout
+		//property int setHeight: configuration.setHeight
+		//property int setWidth: configuration.setWidth
+		property int timeout: configuration.timeout
 		
 		property string iconPath: root.customIcon
 		property string dynamicTooltipHead: root.customTooltipHead
@@ -56,7 +58,7 @@ Item {
 			plasmoid.status = newStatus
 		}
 
-		PlasmaCore.DataSource {
+		Plasma5Support.DataSource {
 			id: executable
 			engine: "executable"
 			connectedSources: []
@@ -182,7 +184,7 @@ Item {
 
 		}
 
-		PlasmaCore.IconItem {
+		Kirigami.Icon {
 			anchors.fill: parent
 			source: root.iconPath
 
@@ -214,7 +216,7 @@ Item {
 			}
 		}
 
-		Plasmoid.backgroundHints: showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
+		backgroundHints: showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
 
 		//Layout.preferredHeight: setHeight == 0 ? -1 : setHeight
 		//Layout.preferredWidth: setWidth == 0 ? -1 : setWidth
