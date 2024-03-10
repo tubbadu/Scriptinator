@@ -216,7 +216,8 @@ PlasmoidItem {
 			}
 		}
 
-		//plasmoid.backgroundHints: showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
+
+		Plasmoid.backgroundHints: showBackground ? PlasmaCore.Types.DefaultBackground : PlasmaCore.Types.NoBackground
 
 		//Layout.preferredHeight: setHeight == 0 ? -1 : setHeight
 		//Layout.preferredWidth: setWidth == 0 ? -1 : setWidth
