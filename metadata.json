@@ -14,7 +14,7 @@
         "License": "GPL",
         "Name": "Scriptinator",
         "Name[en_GB]": "Scriptinator",
-        "Version": "1.1",
+        "Version": "3.1",
         "Website": "https://github.com/tubbadu/Scriptinator"
     },
     "X-Plasma-NotificationArea": "true",
