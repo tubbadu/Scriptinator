@@ -50,6 +50,6 @@ Clicking the system update icon in the tray opens a YAD dialog window, with slig
 
 Performing the updates using Discover might be especially preferrable for "offline updates", when important system software packages are downloaded immediately, but installed after rebooting the computer.
 
-![Screenshot](06b_updater-apper-konsole.png)
+![Screenshot](06b_updater-apper-konsole.jpg)
 
 Apper package manager might be preferrable for quick updates that carry no risk when performed immediately without any reboot, such as applications and tools that are not in use or can be closed before the update, and restarted after. Konsole option, on the other hand, simply opens a terminal window, and starts executing the command `sudo apt full-upgrade`, which might be preferred especially by advanced-level users.
