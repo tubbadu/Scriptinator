@@ -34,28 +34,12 @@ status_list() {
 			echo "* $package_name: [No Description]" >> "$update_list"
 		fi
 	done < "$update_lst"
+	sed -i 's/&/&amp;/g' "$update_list"
 }
 
 status_periodic() {
-	echo $my_password | sudo -S apt update
-	sleep2
 	status_list
-	if [[ "$update_count" -eq 0 ]]; then
-		echo '{PlasmoidIconStart}update-none{PlasmoidIconEnd}'
-		echo '{PlasmoidStatusStart}passive{PlasmoidStatusEnd}'
-	elif [[ "$update_count" -lt 10 ]]; then
-		echo '{PlasmoidIconStart}update-low{PlasmoidIconEnd}'
-		echo '{PlasmoidStatusStart}active{PlasmoidStatusEnd}'
-	elif [[ "$update_count" -lt 30 ]]; then
-		echo '{PlasmoidIconStart}update-medium{PlasmoidIconEnd}'
-		echo '{PlasmoidStatusStart}active{PlasmoidStatusEnd}'
-	elif [[ "$update_count" -gt 29 ]]; then
-		echo '{PlasmoidIconStart}update-high{PlasmoidIconEnd}'
-		echo '{PlasmoidStatusStart}active{PlasmoidStatusEnd}'
-	else
-		echo '{PlasmoidIconStart}question{PlasmoidIconEnd}'
-		echo '{PlasmoidStatusStart}active{PlasmoidStatusEnd}'
-	fi
+	status_init
 }
 
 view_count() {
@@ -110,6 +94,7 @@ updater_main() {
 	if [[ "$update_count" -eq 0 ]]; then
 		kdialog --icon "update-none" --title "Software Updates" --passivepopup "<big><b>System is up to date\!</b></big>"
 	elif [[ "$update_count" -eq 1 ]]; then
+		local update_list="$(cat "$update_list")"
 		yad --form --columns=2 --title "Software Updates" --text="\nWould you like to perform the <b>software update below</b>,\nusing <b>one of the following applications</b>\?\n____________________________________________________________\n\n<i>${update_list}</i>\n" --image "update-low" --image-on-top \
 			--field="<b>Discover</b>!system-software-update!Perform system software updates offline :fbtn" updater_discover \
 			--field="<b>Konsole</b>!akonadiconsole!Perform software updates in terminal :fbtn" updater_konsole \
@@ -117,6 +102,7 @@ updater_main() {
 			--button="Close!dialog-ok" \
 			--geometry="430x100+1265+25"
 	elif [[ "$update_count" -le 5 ]]; then
+		local update_list="$(cat "$update_list")"
 		yad --form --columns=2 --title "Software Updates" --text="\nWould you like to perform the <b>${update_count} software updates</b> below,\nusing <b>one of the following applications</b>\?\n____________________________________________________________\n<i>${update_list}</i>" --image "update-low" --image-on-top \
 			--field="<b>Discover</b>!system-software-update!Perform system software updates offline :fbtn" updater_discover \
 			--field="<b>Konsole</b>!akonadiconsole!Perform software updates in terminal :fbtn" updater_konsole \
@@ -124,6 +110,7 @@ updater_main() {
 			--button="Close!dialog-ok" \
 			--geometry="430x250+1265+25"
 	elif [[ "$update_count" -le 15 ]]; then
+		local update_list="$(cat "$update_list")"
 		yad --form --columns=2 --title "Software Updates" --text="\nWould you like to perform the <b>${update_count} software updates</b> below,\nusing <b>one of the following applications</b>\?\n____________________________________________________________\n<i>${update_list}</i>" --image "update-medium" --image-on-top \
 			--field="<b>Apper</b>!svn-update!Launch package manager :fbtn" updater_apper \
 			--field="<b>Discover</b>!system-software-update!Perform system software updates offline :fbtn" updater_discover \
@@ -131,6 +118,7 @@ updater_main() {
 			--button="Close!dialog-ok" \
 			--geometry="430x450+1265+25"
 	elif [[ "$update_count" -lt 20 ]]; then
+		local update_list="$(cat "$update_list")"
 		yad --form --columns=2 --title "Software Updates" --text="\nWould you like to perform the <b>${update_count} software updates</b> below,\nusing <b>one of the following applications</b>\?\n____________________________________________________________\n<i>${update_list}</i>" --image "update-medium" --image-on-top \
 			--field="<b>View List</b>!format-list-unordered!Display a full list of pending updates :fbtn" view_list \
 			--field="<b>Apper</b>!svn-update!Launch package manager :fbtn" updater_apper \
@@ -139,7 +127,7 @@ updater_main() {
 			--button="Close!dialog-ok" \
 			--geometry="430x550+1265+25"
 	elif [[ "$update_count" -ge 20 ]]; then
-		local update_list="$(echo "$update_list" | head -n 20)"
+		local update_list="$(cat "$update_list" | head -n 20)"
 		yad --form --columns=2 --title "Software Updates" --text="\nWould you like to perform the <b>${update_count} software updates</b> available,\nusing <b>one of the following applications</b>\?\n____________________________________________________________\n<i>${update_list}</i>\n<b>.........</b>" --image "update-high" --image-on-top \
 			--field="<b>View List</b>!format-list-unordered!Display a full list of pending updates :fbtn" view_list \
 			--field="<b>Apper</b>!svn-update!Launch package manager :fbtn" updater_apper \
