@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
 status_init() {
-	status_list
 	if [[ "$update_count" -eq 0 ]]; then
 		echo '{PlasmoidIconStart}update-none{PlasmoidIconEnd}'
 		echo '{PlasmoidStatusStart}passive{PlasmoidStatusEnd}'
